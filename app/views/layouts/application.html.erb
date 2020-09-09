@@ -16,9 +16,14 @@
 
       <% if current_user && current_user.role == 'merchant' %>
         <%= link_to "Cart: #{cart.total_items}", "/cart" %>
+        <%= link_to "Profile", "/profile" %>
+        <%= link_to "Merchant Dashboard", controller: 'merchant/dashboard', action: 'index', id: current_user.id%>
+        <%= link_to "Log Out", "/logout" %>
 
       <% elsif current_user && current_user.role == 'admin' %>
         <%= link_to "Profile", "/profile" %>
+        <%= link_to "Admin Dashboard", controller: 'admin/dashboard', action: 'index', id: current_user.id%>
+        <%= link_to "All Users", "/admin/users" %>
         <%= link_to "Log Out", "/logout" %>
 
       <% elsif current_user.nil? %>

@@ -12,3 +12,12 @@ describe User, type: :model do
     it {should validate_presence_of(:password)}
   end
 end
+
+describe "roles" do
+  it "can be created as a default user" do
+    user = User.create(name: 'Saryn Mooney', address: '1234 Cherry St', city: 'Denver', state: 'CO', zip: '80209', email: 'saryn@turing.io', password: 'test123', role: 0)
+
+    expect(user.role).to eq("default")
+    expect(user.default?).to be_truthy
+  end
+end
