@@ -1,14 +1,16 @@
 class UsersController < ApplicationController
   def new; end
 
-  def show; end
+  def show
+    @user = User.find(session[:user_id])
+  end
 
   def create
     new_user = User.new(user_params)
     if new_user.save
         flash[:success] = "Welcome #{new_user.name}! Thank you for registering!"
         redirect_to '/profile'
-    else        
+    else
         flash[:name] = "Name field required" if params[:name].empty?
         flash[:address_warning] = "Address field required" if params[:address].empty?
         flash[:city_warning] = "City field required" if params[:city].empty?

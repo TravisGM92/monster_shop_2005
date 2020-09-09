@@ -10,10 +10,32 @@
 
   <body>
     <nav class = "topnav">
+      <%= link_to "Home", "/" %>
       <%= link_to "All Merchants", "/merchants"%>
       <%= link_to "All Items", "/items"%>
-      <%= link_to "Cart: #{cart.total_items}", "/cart" %>
-      <%= link_to "New User", "/register"%>
+
+      <% if current_user && current_user.role == 'merchant' %>
+        <%= link_to "Cart: #{cart.total_items}", "/cart" %>
+        <%= link_to "Profile", "/profile" %>
+        <%= link_to "Merchant Dashboard", controller: 'merchant/dashboard', action: 'index', id: current_user.id%>
+        <%= link_to "Log Out", "/logout" %>
+
+      <% elsif current_user && current_user.role == 'admin' %>
+        <%= link_to "Profile", "/profile" %>
+        <%= link_to "Admin Dashboard", controller: 'admin/dashboard', action: 'index', id: current_user.id%>
+        <%= link_to "All Users", "/admin/users" %>
+        <%= link_to "Log Out", "/logout" %>
+
+      <% elsif current_user.nil? %>
+        <%= link_to "Login", "/login" %>
+        <%= link_to "Register", "/register" %>
+        <%= link_to "Cart: #{cart.total_items}", "/cart" %>
+
+      <% else %>
+        <%= link_to "Profile", "/profile" %>
+        <%= link_to "Logout", "/logout" %>
+        <%= link_to "Cart: #{cart.total_items}", "/cart" %>
+      <% end %>
     </nav>
     <% flash.each do |name, msg| %>
       <div class= "<%=name%>-flash">
