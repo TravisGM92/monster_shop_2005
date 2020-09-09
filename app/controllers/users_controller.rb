@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
   def new; end
 
-  def show; end
+  def show
+    @user = User.find(session[:user_id])
+  end
 
   def create
     new_user = User.new(user_params)
