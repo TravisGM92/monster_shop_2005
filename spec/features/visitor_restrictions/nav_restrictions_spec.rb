@@ -20,4 +20,19 @@ RSpec.describe 'Site Navigation Restrictions' do
       end
     end
   end
+
+  describe 'As a default user' do
+    describe "When I try to access any path that begins with the following" do
+      it "I see a 404 error (/merchant, /admin)" do
+
+        visit '/merchants'
+
+        # expect(page).to eq("The page you were looking for doesn't exist.")
+
+        # visit '/admin'
+
+        # expect(page).to eq("The page you were looking for doesn't exist.")
+      end
+    end
+  end
 end
