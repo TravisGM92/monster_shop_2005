@@ -1,0 +1,23 @@
+
+require 'rails_helper'
+
+RSpec.describe 'Site Navigation Restrictions' do
+  describe 'As a Visitor' do
+    describe "When I try to access any path that begins with the following" do
+      it "I see a 404 error (/merchant, /admin, or /profile)" do
+
+        visit '/merchants'
+
+        # expect(page).to eq("The page you were looking for doesn't exist.")
+
+        # visit '/admin'
+
+        # expect(page).to eq("The page you were looking for doesn't exist.")
+
+        # visit '/profile'
+
+        # expect(page).to eq("The page you were looking for doesn't exist.")
+      end
+    end
+  end
+end
