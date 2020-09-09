@@ -46,4 +46,19 @@ RSpec.describe 'Site Navigation Restrictions' do
       end
     end
   end
+
+  describe 'As an admin' do
+    describe "When I try to access any path that begins with the following" do
+      it "I see a 404 error (/merchant, /cart)" do
+
+        # visit '/cart'
+
+        # expect(page).to eq("The page you were looking for doesn't exist.")
+
+        visit '/merchants'
+
+        # expect(page).to eq("The page you were looking for doesn't exist.")
+      end
+    end
+  end
 end
