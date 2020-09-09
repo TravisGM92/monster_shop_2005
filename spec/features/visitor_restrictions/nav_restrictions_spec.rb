@@ -25,6 +25,8 @@ RSpec.describe 'Site Navigation Restrictions' do
     describe "When I try to access any path that begins with the following" do
       it "I see a 404 error (/merchant, /admin)" do
 
+        # allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
         visit '/merchants'
 
         # expect(page).to eq("The page you were looking for doesn't exist.")
@@ -40,6 +42,8 @@ RSpec.describe 'Site Navigation Restrictions' do
     describe "When I try to access any path that begins with the following" do
       it "I see a 404 error (/admin)" do
 
+        # allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(merchant)
+
         # visit '/admin'
 
         # expect(page).to eq("The page you were looking for doesn't exist.")
@@ -51,7 +55,9 @@ RSpec.describe 'Site Navigation Restrictions' do
     describe "When I try to access any path that begins with the following" do
       it "I see a 404 error (/merchant, /cart)" do
 
-        # visit '/cart'
+        # allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+
+        visit '/cart'
 
         # expect(page).to eq("The page you were looking for doesn't exist.")
 
