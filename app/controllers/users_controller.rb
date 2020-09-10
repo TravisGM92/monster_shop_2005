@@ -16,12 +16,10 @@ end
     if @user.save
       flash[:success] = "Welcome #{@user.name}! Thank you for registering!"
       redirect_to "/profile"
-      # respond_to do |format| 
-      #   format.html { redirect_to '/' }
-      # end
     else
       flash[:error] = @user.errors.full_messages.to_sentence
-      redirect_to '/register'
+      @user.email = "" if @user.errors.details.keys.include?(:email)
+      render :new
     end
   end
 
