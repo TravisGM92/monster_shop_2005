@@ -16,9 +16,6 @@ end
     if @new_user.save
       flash[:success] = "Welcome #{@new_user.name}! Thank you for registering!"
       redirect_to "/profile"
-      # respond_to do |format|
-      #   format.html { redirect_to '/' }
-      # end
     else
       flash[:error] = @new_user.errors.full_messages.to_sentence
       redirect_to '/register'
