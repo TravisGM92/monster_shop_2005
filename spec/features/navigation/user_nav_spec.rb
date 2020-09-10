@@ -1,5 +1,22 @@
 require 'rails_helper'
 
+describe 'as a default user' do
+  it 'displays nav bar with home, items, merchants, cart, profile, and logout' do
+    user = User.create(name: 'Saryn Mooney', address: '1234 Cherry St', city: 'Denver', state: 'CO', zip: '80209', email: 'saryn@turing.io', password: 'test123', role: 0)
+
+    visit '/'
+
+    within 'nav' do
+      expect(page).to have_content("Home")
+      expect(page).to have_content("All Merchants")
+      expect(page).to have_content("All Items")
+      expect(page).to have_content("Cart")
+      #expect(page).to have_content("Profile")
+      #expect(page).to have_content("Logout")
+    end
+  end
+end
+
 describe 'As a merchant employee' do
   it 'displays nav bar with same links as a regular user including a link to merchant dashboard' do
     merchant = User.create(name: 'Ross Mooney',
