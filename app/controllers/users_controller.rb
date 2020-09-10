@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     if User.all == []
       render file: "/public/404"
     else
-      @user = User.find(session[:user_id])
+      @user = User.last
     end
   end
 
