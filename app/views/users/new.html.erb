@@ -1,28 +1,28 @@
 <h1 align= "center">Register User</h1>
 <center>
-<%= form_for @user, :as => :user do |f| %>
-  <%= f.label 'Name' %>
+<%= form_for :user, :as => :user do |f| %>
+  <%= f.label :name %>
   <%= f.text_field :name %><br />
 
-  <%= f.label 'Address' %>
+  <%= f.label :address %>
   <%= f.text_field :address %><br />
 
-  <%= f.label 'City' %>
+  <%= f.label :city %>
   <%= f.text_field :city %><br />
 
-  <%= f.label 'State' %>
+  <%= f.label :state %>
   <%= f.text_field :state %><br />
 
-  <%= f.label 'Zip' %>
+  <%= f.label :zip %>
   <%= f.text_field :zip %><br />
 
-  <%= f.label 'Email' %>
+  <%= f.label :email %>
   <%= f.text_field :email %><br />
 
-  <%= f.label 'Password' %>
-  <%= f.password_field :password %>
+  <%= f.label :password %>
+  <%= f.password_field :password, value: nil %>
 
-  <%= f.label 'Password Confirmation' %>
+  <%= f.label :password_confirmation %>
   <%= f.password_field :password_confirmation %>
   
   <%= f.submit 'Register New User' %>
