@@ -58,5 +58,9 @@ RSpec.describe "Items Index Page" do
       expect(page).to_not have_content("Inventory: #{@dog_bone.inventory}")
       expect(page).to_not have_css("img[src*='#{@dog_bone.image}']")
     end
+
+    it "can display 5 most popular items, along with the quantity bought" do
+
+    end 
   end
 end
