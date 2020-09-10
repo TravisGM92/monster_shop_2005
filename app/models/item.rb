@@ -25,4 +25,12 @@ class Item < ApplicationRecord
     item_orders.empty?
   end
 
+  def self.top_five
+    order(quantity_purchased: :desc).limit(5)
+  end
+
+  def self.lowest_five
+    order(quantity_purchased: :asc).limit(5)
+  end
+
 end
