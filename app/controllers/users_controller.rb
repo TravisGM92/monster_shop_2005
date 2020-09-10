@@ -4,6 +4,11 @@ class UsersController < ApplicationController
 end
 
   def show
+    if User.all == []
+      render file: "/public/404"
+    else
+      @user = User.last
+    end
   end
 
   def create
