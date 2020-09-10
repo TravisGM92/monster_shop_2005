@@ -2,7 +2,11 @@ class UsersController < ApplicationController
   def new; end
 
   def show
-    @user = User.find(session[:user_id])
+    if User.all == []
+      render file: "/public/404"
+    else
+      @user = User.find(session[:user_id])
+    end
   end
 
   def create
