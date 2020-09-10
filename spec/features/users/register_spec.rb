@@ -14,14 +14,14 @@ RSpec.describe 'User registration page', type: :feature do
       password = "password"
       password_confirm = "password"
 
-      fill_in :name, with: name
-      fill_in :address, with: address
-      fill_in :city, with: city
-      fill_in :state, with: state
-      fill_in :zip, with: zip
-      fill_in :email, with: email
-      fill_in :password, with: password
-      fill_in :password_confirmation, with: password_confirm
+      fill_in "Name", with: name
+      fill_in "Address", with: address
+      fill_in "City", with: city
+      fill_in "State", with: state
+      fill_in "Zip", with: zip
+      fill_in "Email", with: email
+      fill_in "Password", with: password
+      fill_in "Password confirmation", with: password_confirm
       click_button "Register New User"
       expect(current_path).to eq('/profile')
       expect(page).to have_content("Welcome #{name}!")
@@ -40,14 +40,14 @@ RSpec.describe 'User registration page', type: :feature do
         password = "password"
         password_confirm = "password"
   
-        fill_in :name, with: name
-        fill_in :address, with: address
-        fill_in :city, with: city
-        fill_in :state, with: state
-        fill_in :zip, with: zip
-        fill_in :email, with: email
-        fill_in :password, with: password
-        fill_in :password_confirmation, with: password_confirm
+        fill_in "Name", with: name
+      fill_in "Address", with: address
+      fill_in "City", with: city
+      fill_in "State", with: state
+      fill_in "Zip", with: zip
+      fill_in "Email", with: email
+      fill_in "Password", with: password
+      fill_in "Password confirmation", with: password_confirm
   
         click_button "Register New User"
 
