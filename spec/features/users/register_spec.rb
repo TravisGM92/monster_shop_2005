@@ -72,28 +72,27 @@ RSpec.describe 'User registration page', type: :feature do
       password = "password"
       password_confirm = "password"
 
-      fill_in 'Name', with: name
-      fill_in 'Address', with: address
-      fill_in 'City', with: city
-      fill_in 'State', with: state
-      fill_in 'Zip', with: zip
-      fill_in 'Email', with: email
-      fill_in 'Password', with: password
-      fill_in 'Password Confirmation', with: password_confirm
+      fill_in "Name", with: name
+      fill_in "Address", with: address
+      fill_in "City", with: city
+      fill_in "State", with: state
+      fill_in "Zip", with: zip
+      fill_in "Email", with: email
+      fill_in "Password", with: password
+      fill_in "Password confirmation", with: password_confirm
 
       click_button "Register New User"
 
       expect(current_path).to eq('/register')
 
       expect(page).to have_content("Email has already been taken")
-      # expect(page).to have_content("Mike Dao")
-      # expect(page).to have_field('Name', with: 'Mike Dao')
-      # expect(page).to have_field('Address', with: '123 Chicken Nugget Dr.')
-      # expect(page).to have_field('City', with: 'Denver')
-      # expect(page).to have_field('State', with: 'CO')
-      # expect(page).to have_field('Zip', with: 80204)
-      # expect(page).to_not have_field('Password', with: 'password')
-      # expect(page).to_not have_field('Password confirmation', with: 'password')
+      expect(page).to have_xpath("//input[@value='Mike Dao']")
+      expect(page).to have_xpath("//input[@value='123 Chicken Nugget Dr.']")
+      expect(page).to have_xpath("//input[@value='Denver']")
+      expect(page).to have_xpath("//input[@value='CO']")
+      expect(page).to have_xpath("//input[@value=80204]")
+      expect(page).to_not have_xpath("//input[@value='hackerman88@hotmail.com']")
+      expect(page).to_not have_xpath("//input[@value='password']")
     end
   end
 end 
