@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   post "/orders", to: "orders#create"
   get "/orders/:id", to: "orders#show"
 
-  #Users 
+  #Users
   get "/register", to: "users#new"
 
   get "/login", to: "sessions#new"
@@ -44,7 +44,8 @@ Rails.application.routes.draw do
 
   post "/profile", to: "users#create"
   get "/profile", to: "users#show"
-
+  get "profile/edit", to: 'users#edit', as: :edit_profile
+  post "/profile/update", to: 'users#update'
 
   namespace :merchant do
     get "/", to: "dashboard#index"
