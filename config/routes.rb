@@ -37,6 +37,8 @@ Rails.application.routes.draw do
 
   get "/login", to: "sessions#new"
 
+  post "/register", to: "users#create"
+
   #profile routes
 
   post "/profile", to: "users#create"

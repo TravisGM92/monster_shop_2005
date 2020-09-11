@@ -66,6 +66,13 @@ RSpec.describe "Items Index Page" do
       @pull_toy = @brian.items.create(name: "Pull Toy", description: "Great pull toy!", price: 10, image: "http://lovencaretoys.com/image/cache/dog/tug-toy-dog-pull-9010_2-800x800.jpg", inventory: 32, quantity_purchased: 20)
       @dog_bone = @brian.items.create(name: "Dog Bone", description: "They'll love it!", price: 21, image: "https://img.chewy.com/is/image/catalog/54226_MAIN._AC_SL1500_V1534449573_.jpg", active?:false, inventory: 21, quantity_purchased: 12)
       @bike = @meg.items.create(name: "Street Bike", description: "Brand new", price: 200, image: "https://www.bikeride.com/images/bike/Orro-FE-Wiggle-Profile-Scaled.jpg", inventory: 2, quantity_purchased: 1)
+
+      visit '/items'
+
+      expect(page).to have_content("Most Popular Items")
+      expect(page).to have_content("#{@tire.name}: #{@tire.quantity_purchased}")
+      expect(page).to have_content("#{@pull_toy.name}: #{@pull_toy.quantity_purchased}")
+      expect(page).to have_content("#{@bike.name}: #{@bike.quantity_purchased}")
     end
   end
 end
