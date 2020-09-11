@@ -6,8 +6,10 @@ end
   def show
     if User.all == []
       render file: "/public/404"
-    else
+    elsif current_user.nil?
       @user = User.last
+    else
+      @user = current_user
     end
   end
 
@@ -24,6 +26,12 @@ end
 
   def edit
     @user = User.last
+  end
+
+  def update
+    current_user.update(user_params)
+    flash[:success] = "Profile updated"
+    redirect_to("/profile")
   end
 
   private
