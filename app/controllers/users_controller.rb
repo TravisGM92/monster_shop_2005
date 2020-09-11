@@ -40,7 +40,7 @@ class UsersController < ApplicationController
   end
 
   def new_password
-    current_user.update(password_confirmation: params[:password_digest])
+    User.last.update(password_confirmation: params[:password_confirmation])
     flash[:success] = "Your password has been updated"
     redirect_to("/profile")
   end
