@@ -1,35 +1,10 @@
 <h1 align= "center">Register User</h1>
 <center>
 
-<%= form_tag '/profile' do %>
-
-<%= label_tag(:name, "Name") %>
-<%= text_field_tag(:name) %>
-
-<%= label_tag(:address, "Address") %>
-<%= text_field_tag(:address) %>
-
-<%= label_tag(:city, "City") %>
-<%= text_field_tag(:city) %>
-
-<%= label_tag(:state, "State") %>
-<%= text_field_tag(:state) %>
-
-<%= label_tag(:zip, "Zip") %>
-<%= text_field_tag(:zip) %>
-
-<%= label_tag(:email, "Email") %>
-<%= text_field_tag(:email) %>
-
-<%= label_tag(:password, "Password") %>
-<%= text_field_tag(:password) %>
-
-<%= label_tag(:password_confirmation, "Password Confirmation") %>
-<%= text_field_tag(:password_confirmation) %>
-
-<%= submit_tag "Register New User" %>
-
-<% end %>
-
+  <%= render partial: 'form', locals: {
+                                      path: "/profile",
+                                      method: :patch,
+                                      button_text_dynamic: "Register New User"
+                                      } %>
 
 </center>
