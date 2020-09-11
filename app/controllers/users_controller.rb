@@ -22,6 +22,10 @@ end
     end
   end
 
+  def edit
+    @user = User.last
+  end
+
   private
 
   def user_params
