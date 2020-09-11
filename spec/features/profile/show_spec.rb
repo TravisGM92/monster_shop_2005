@@ -57,12 +57,12 @@ RSpec.describe 'Profile show' do
                           click_link("Edit profile")
                           expect(current_path).to eq("/profile/edit")
 
-                          expect(page).to have_content("#{@ross.name}")
-                          expect(page).to have_content("#{@ross.address}")
-                          expect(page).to have_content("#{@ross.city}")
-                          expect(page).to have_content("#{@ross.state}")
-                          expect(page).to have_content("#{@ross.zip}")
-                          expect(page).to have_content("#{@ross.email}")
+                          expect(find_field('Name').value).to eq("Ross Mooney")
+                          expect(find_field('Address').value).to eq("2468 S. Grant St.")
+                          expect(find_field('City').value).to eq("Littleton")
+                          expect(find_field('State').value).to eq("CO")
+                          expect(find_field('Zip').value).to eq("80121")
+                          expect(find_field('Email').value).to eq("ross_is_cool@turing.io")
 
                           fill_in :name, with: "Billy"
                           fill_in :address, with: "homeless"
@@ -70,10 +70,11 @@ RSpec.describe 'Profile show' do
 
                           click_button("Update profile")
                           expect(current_path).to eq("/profile")
+
                           expect(page).to have_content("Profile updated")
-                          expect(page).to have_content("Billy")
-                          expect(page).to have_content("homeless")
-                          expect(page).to_not have_content("#{@ross.name}")
+                          expect(page).to have_content("Billy\n")
+                          expect(page).to have_content("Address: homeless\n")
+                          expect(page).to_not have_content("Ross")
 
 
 
