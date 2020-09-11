@@ -59,8 +59,13 @@ RSpec.describe "Items Index Page" do
       expect(page).to_not have_css("img[src*='#{@dog_bone.image}']")
     end
 
-    it "can display 5 most popular items, along with the quantity bought" do
-
-    end 
+    it "can display item statistics" do
+      @meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
+      @brian = Merchant.create(name: "Brian's Dog Shop", address: '125 Doggo St.', city: 'Denver', state: 'CO', zip: 80210)
+      @tire = @meg.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12, quantity_purchased: 4)
+      @pull_toy = @brian.items.create(name: "Pull Toy", description: "Great pull toy!", price: 10, image: "http://lovencaretoys.com/image/cache/dog/tug-toy-dog-pull-9010_2-800x800.jpg", inventory: 32, quantity_purchased: 20)
+      @dog_bone = @brian.items.create(name: "Dog Bone", description: "They'll love it!", price: 21, image: "https://img.chewy.com/is/image/catalog/54226_MAIN._AC_SL1500_V1534449573_.jpg", active?:false, inventory: 21, quantity_purchased: 12)
+      @bike = @meg.items.create(name: "Street Bike", description: "Brand new", price: 200, image: "https://www.bikeride.com/images/bike/Orro-FE-Wiggle-Profile-Scaled.jpg", inventory: 2, quantity_purchased: 1)
+    end
   end
 end
