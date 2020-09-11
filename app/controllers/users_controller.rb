@@ -1,13 +1,15 @@
 class UsersController < ApplicationController
   def new
-  @user = User.new
-end
+    @user = User.new
+  end
 
   def show
     if User.all == []
       render file: "/public/404"
-    else
+    elsif current_user.nil?
       @user = User.last
+    else
+      @user = current_user
     end
   end
 
@@ -21,6 +23,16 @@ end
       @user.email = "" if @user.errors.details.keys.include?(:email)
       render :new
     end
+  end
+
+  def edit
+    @user = User.last
+  end
+
+  def update
+    current_user.update(name: params[:name], address: params[:address], city: params[:city], state: params[:state], zip: params[:zip], email: params[:email])
+    flash[:success] = "Profile updated"
+    redirect_to("/profile")
   end
 
   private
