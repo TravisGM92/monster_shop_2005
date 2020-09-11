@@ -35,6 +35,16 @@ class UsersController < ApplicationController
     redirect_to("/profile")
   end
 
+  def password_update
+    @user = User.last
+  end
+
+  def new_password
+    current_user.update(password_confirmation: params[:password_digest])
+    flash[:success] = "Your password has been updated"
+    redirect_to("/profile")
+  end
+
   private
 
   def user_params
