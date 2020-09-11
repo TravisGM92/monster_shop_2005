@@ -1,4 +1,4 @@
-class Item <ApplicationRecord
+class Item < ApplicationRecord
   belongs_to :merchant
   has_many :reviews, dependent: :destroy
   has_many :item_orders
@@ -23,6 +23,14 @@ class Item <ApplicationRecord
 
   def no_orders?
     item_orders.empty?
+  end
+
+  def self.top_five
+    order(quantity_purchased: :desc).limit(5)
+  end
+
+  def self.lowest_five
+    order(quantity_purchased: :asc).limit(5)
   end
 
 end

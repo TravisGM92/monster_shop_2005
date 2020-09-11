@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   patch "/merchants/:id", to: "merchants#update"
   delete "/merchants/:id", to: "merchants#destroy"
 
-
   resources :items, only: [:index, :show]
 
   get "/items/:id/edit", to: "items#edit"
