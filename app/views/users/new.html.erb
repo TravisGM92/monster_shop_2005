@@ -1,6 +1,10 @@
 <h1 align= "center">Register User</h1>
 <center>
+<%= form_for :user, :as => :user do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %><br />
 
+<<<<<<< HEAD
   <%= render partial: 'form', locals: {
                                       path: "/profile",
                                       method: :patch,
@@ -8,3 +12,30 @@
                                       } %>
 
 </center>
+=======
+  <%= f.label :address %>
+  <%= f.text_field :address %><br />
+
+  <%= f.label :city %>
+  <%= f.text_field :city %><br />
+
+  <%= f.label :state %>
+  <%= f.text_field :state %><br />
+
+  <%= f.label :zip %>
+  <%= f.text_field :zip %><br />
+
+  <%= f.label :email %>
+  <%= f.text_field :email %><br />
+
+  <%= f.label :password %>
+  <%= f.password_field :password, value: nil %>
+
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation %>
+  
+  <%= f.submit 'Register New User' %>
+<% end %>
+
+</center>
+>>>>>>> 450d50069b1f65ad33c01dfdb9e6006434aee0b7

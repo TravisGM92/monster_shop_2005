@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def new
-  @new_user = User.new
+  @user = User.new
 end
 
   def show
@@ -14,13 +14,14 @@ end
   end
 
   def create
-    @new_user = User.new(user_params)
-    if @new_user.save
-      flash[:success] = "Welcome #{@new_user.name}! Thank you for registering!"
+    @user = User.new(user_params)
+    if @user.save
+      flash[:success] = "Welcome #{@user.name}! Thank you for registering!"
       redirect_to "/profile"
     else
-      flash[:error] = @new_user.errors.full_messages.to_sentence
-      redirect_to '/register'
+      flash[:error] = @user.errors.full_messages.to_sentence
+      @user.email = "" if @user.errors.details.keys.include?(:email)
+      render :new
     end
   end
 
@@ -37,7 +38,7 @@ end
   private
 
   def user_params
-    params.permit(:name, :address, :city, :state, :zip, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :address, :city, :state, :zip, :email, :password, :password_confirmation)
   end
 
 end
