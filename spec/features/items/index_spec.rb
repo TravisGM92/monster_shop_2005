@@ -73,6 +73,10 @@ RSpec.describe "Items Index Page" do
       expect(page).to have_content("#{@tire.name}: #{@tire.quantity_purchased}")
       expect(page).to have_content("#{@pull_toy.name}: #{@pull_toy.quantity_purchased}")
       expect(page).to have_content("#{@bike.name}: #{@bike.quantity_purchased}")
+      expect(page).to have_content("Least Popular Items")
+      expect(page).to have_content("#{@tire.name}: #{@tire.quantity_purchased}")
+      expect(page).to have_content("#{@pull_toy.name}: #{@pull_toy.quantity_purchased}")
+      expect(page).to have_content("#{@bike.name}: #{@bike.quantity_purchased}")
     end
   end
 end
