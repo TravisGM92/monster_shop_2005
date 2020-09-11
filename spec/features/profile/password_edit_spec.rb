@@ -33,13 +33,14 @@ RSpec.describe 'Edit profile password' do
                 expect(page).to_not have_content("#{@ross.password}")
 
                 expect(page).to have_link("Edit password")
+                click_link("Edit password")
                 expect(current_path).to eq("/profile/edit_password")
 
-                expect(page).to have_content("New password:")
-                expect(page).to have_content("Confirm new password:")
+                expect(page).to have_content("New password")
+                expect(page).to have_content("Password confirmation")
 
                 fill_in "New password", with: "123h"
-                fill_in "Confirm new password", with: "123h"
+                fill_in "Password confirmation", with: "123h"
                 click_button "Update password"
 
                 expect(current_path).to eq("/profile")
