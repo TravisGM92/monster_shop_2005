@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   def new
-  @user = User.new
-end
+    @user = User.new
+  end
 
   def show
     if User.all == []
@@ -30,7 +30,7 @@ end
   end
 
   def update
-    current_user.update(user_params)
+    current_user.update(name: params[:name], address: params[:address], city: params[:city], state: params[:state], zip: params[:zip], email: params[:email])
     flash[:success] = "Profile updated"
     redirect_to("/profile")
   end
