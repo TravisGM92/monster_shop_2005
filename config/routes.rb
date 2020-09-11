@@ -38,8 +38,6 @@ Rails.application.routes.draw do
 
   get "/login", to: "sessions#new"
 
-  post "/register", to: "users#create"
-
   #profile routes
 
   post "/profile", to: "users#create"
@@ -57,3 +55,4 @@ Rails.application.routes.draw do
   end
 
 end
+
