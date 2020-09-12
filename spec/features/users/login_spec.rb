@@ -8,7 +8,7 @@ RSpec.describe "User can login" do
     @admin = User.create!(name: "Nelcy Pillado", address: "123 Kedvale Ave", city: "Chicago", state: "IL", zip: 60623, email: "nelcy@email.com", password: "password", role: 2)
   end
 
-  it "If I am a regular user, I am redirected to my profile page. A flash message will confirm I am logged in" do
+  it "If I am a regular user, I am redirected to my profile page. A flash message will confirm I am logged in." do
 
     visit "/login"
 
@@ -18,6 +18,19 @@ RSpec.describe "User can login" do
     click_button "Log In"
 
     expect(current_path).to eq("/profile")
+    expect(page).to have_content("You are now logged in!")
+  end
+
+  it "If I am a merchant employee, I am redirected to my merchant dashboard. A flash message will confirm I am logged in." do
+
+    visit "/login"
+
+    fill_in :email, with: @merchant.email
+    fill_in :password, with: @merchant.password
+
+    click_button "Log In"
+
+    expect(current_path).to eq("/merchant")
     expect(page).to have_content("You are now logged in!")
   end
 
