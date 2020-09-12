@@ -25,7 +25,7 @@ RSpec.describe 'User registration page', type: :feature do
       click_button "Register New User"
       expect(current_path).to eq('/profile')
       expect(page).to have_content("Welcome #{name}!")
-      
+
     end
 
     it 'I cant create a user if all fields are not filled in' do
@@ -39,7 +39,7 @@ RSpec.describe 'User registration page', type: :feature do
         email = ""
         password = "password"
         password_confirm = "password"
-  
+
         fill_in :name, with: name
         fill_in :address, with: address
         fill_in :city, with: city
@@ -48,7 +48,7 @@ RSpec.describe 'User registration page', type: :feature do
         fill_in :email, with: email
         fill_in :password, with: password
         fill_in :password_confirmation, with: password_confirm
-  
+
         click_button "Register New User"
 
         expect(current_path).to eq('/register')
@@ -60,7 +60,7 @@ RSpec.describe 'User registration page', type: :feature do
 
     it 'I cant create a user if there is a duplicate email' do
       user_1 = User.create({name: "Tim Tyrell", address: "142 Road Street", city: "Denver", state: "CO", zip: 54235, email: "hackerman88@hotmail.com", password: "1234abcd"})
-      
+
       visit '/register'
 
       name = "Mike Dao"
@@ -96,4 +96,4 @@ RSpec.describe 'User registration page', type: :feature do
       # expect(page).to_not have_field('Password confirmation', with: 'password')
     end
   end
-end 
+end
