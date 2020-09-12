@@ -16,7 +16,7 @@ RSpec.describe("User checkout order") do
         password: 'test124',
         role: 0)
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@ross)
-        
+
 
       visit "/items/#{@paper.id}"
       click_on "Add To Cart"
@@ -72,8 +72,9 @@ RSpec.describe("User checkout order") do
                 fill_in :city, with: "Aurora"
                 fill_in :state, with: "CO"
                 fill_in :zip, with: "80226"
-
                 click_button("Create Order")
+                expect(current_path).to eq("/profile/orders")
+                expect(page).to have_content("Your order has been submitted")
               end
             end
           end
