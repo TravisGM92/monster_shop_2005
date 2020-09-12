@@ -12,6 +12,16 @@ class CartController < ApplicationController
     redirect_to '/cart'
   end
 
+  def remove_one
+    item = Item.find(params[:item_id])
+    if cart.items[item] > 1
+      cart.remove_one(item)
+      redirect_to '/cart'
+    elsif cart.items[item] == 1
+      remove_item
+    end
+  end
+
   def show
     if self.current_admin?
       render file: "/public/404"
