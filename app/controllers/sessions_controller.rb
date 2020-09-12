@@ -17,6 +17,7 @@ class SessionsController < ApplicationController
         end
       else
         flash[:failure] = "Uh oh... Wrong email or password. Please try again!"
+        render :new
       end
     else
       flash[:error] = "Hmm... We have no records of this account. Please register before logging in!"

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "User can login" do
+RSpec.describe "Login Page" do
 
   before(:each) do
     @user = User.create!(name: "Elah Pillado", address: "123 Chase Rd", city: "Marietta", state: "GA", zip: 30008, email: "elah@email.com", password: "password", role: 0)
@@ -45,6 +45,20 @@ RSpec.describe "User can login" do
 
     expect(current_path).to eq("/admin")
     expect(page).to have_content("You are now logged in!")
+  end
+
+  it "User cannot log in with bad credentials." do
+
+    visit "/login"
+
+    password = "Cool123"
+    fill_in :email, with: @user.email
+    fill_in :password, with: password
+
+    click_button "Log In"
+
+    expect(current_path).to eq("/login")
+    expect(page).to have_content("Uh oh... Wrong email or password. Please try again!")
   end
 
 end
