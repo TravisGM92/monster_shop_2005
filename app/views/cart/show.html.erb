@@ -1,6 +1,6 @@
 <h1>Cart</h1>
 <% if current_user.nil? %>
-<h2>You must register or log in to finish the checkout process</h2>
+<h2>You must <%=link_to "register", "/register"%> or <%=link_to "login", "/login"%> to finish the checkout process</h2>
 <% end %>
 
 <% if !@items.empty? %>
