@@ -18,7 +18,7 @@
   </table>
 </section>
 
-<h1 align = "center">Order Info</h1>
+<h1 align = "center">Order <%= @order.id %> Info - Status <%= @order.status %> </h1>
 <center>
   <table>
     <tr>
@@ -46,4 +46,7 @@
 </section>
 <section id="datecreated">
   <p> <%= @order.created_at%></p>
+</section>
+<section id="dateupdated">
+  <p> <%= @order.updated_at%></p>
 </section>
