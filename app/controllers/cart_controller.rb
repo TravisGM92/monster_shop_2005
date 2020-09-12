@@ -6,11 +6,17 @@ class CartController < ApplicationController
     redirect_to "/items"
   end
 
+  def add_one
+    item = Item.find(params[:item_id])
+    cart.add_one(item)
+    redirect_to '/cart'
+  end
+
   def show
     if self.current_admin?
       render file: "/public/404"
     else
-      @items = cart.items
+      @items = cart.contents
     end
   end
 
