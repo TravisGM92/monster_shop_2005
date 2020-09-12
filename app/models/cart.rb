@@ -10,6 +10,16 @@ class Cart
     @contents[item] += 1
   end
 
+  def add_one(item)
+    if item.inventory > items[item]
+      add_item(item.id.to_s)
+    end
+  end
+
+  def remove_item(item)
+    @contents[item] -= 1
+  end
+
   def total_items
     @contents.values.sum
   end
