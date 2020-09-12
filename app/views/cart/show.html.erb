@@ -34,6 +34,7 @@
           <p><%=quantity%></p>
           <p><%= link_to "Remove", "/cart/#{item.id}",method: :delete %></p>
           <%= button_to "Add Another!", "/cart/#{item.id}/add" %>
+          <%= button_to "Put One Back!", "/cart/#{item.id}/remove" %>
         </center>
         </td>
       <td>
