@@ -36,7 +36,6 @@ ActiveRecord::Schema.define(version: 2020_09_10_223732) do
     t.bigint "merchant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "quantity"
     t.integer "quantity_purchased", default: 0
     t.index ["merchant_id"], name: "index_items_on_merchant_id"
   end
@@ -77,7 +76,7 @@ ActiveRecord::Schema.define(version: 2020_09_10_223732) do
     t.integer "zip"
     t.string "email"
     t.string "password_digest"
-    t.integer "role"
+    t.integer "role", default: 0
   end
 
   add_foreign_key "item_orders", "items"
