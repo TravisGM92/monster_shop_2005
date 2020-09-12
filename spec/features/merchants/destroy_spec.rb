@@ -71,7 +71,6 @@ RSpec.describe "As a visitor" do
       fill_in :zip, with: zip
 
       click_button "Create Order"
-
       visit "/merchants/#{meg.id}"
       expect(page).to_not have_link("Delete Merchant")
 
