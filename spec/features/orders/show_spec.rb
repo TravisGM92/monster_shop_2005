@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 RSpec.describe("Profile order show page") do
     describe "When I visit the 'My Orders' link" do
         describe "I can click on an order number" do
@@ -23,11 +25,11 @@ RSpec.describe("Profile order show page") do
 
                 @order_2 = @ross.orders.create(name: "Ernie", address: "2343 Sesame St.", city: "NYC", state: "NY", zip: 55555)
                         
-                ItemOrder.new(item_id: @tire.id, order_id: @order_1.id, quantity: 4)
-                ItemOrder.new(item_id: @paper.id, order_id: @order_1.id, quantity: 2)
-                ItemOrder.new(item_id: @paper.id, order_id: @order_2.id, quantity: 5)
-                ItemOrder.new(item_id: @tire.id, order_id: @order_2.id, quantity: 3)
-                ItemOrder.new(item_id: @pencil.id, order_id: @order_2.id, quantity: 1)
+                io1 = @paper.item_orders.create(order_id: @order_1.id, quantity: 4, price: 20)
+                io2 = @tire.item_orders.create(order_id: @order_1.id, quantity: 2, price: 100)
+                io3 = @paper.item_orders.create(order_id: @order_2.id, quantity: 5, price: 20)
+                io4 = @tire.item_orders.create(order_id: @order_2.id, quantity: 3, price: 100)
+                io5 = @pencil.item_orders.create(order_id: @order_2.id, quantity: 1, price: 2)
                 
                 visit "/profile/orders"
 
@@ -40,24 +42,20 @@ RSpec.describe("Profile order show page") do
                 expect(page).to have_content("#{@order_1.id}")
                 expect(page).to have_content("#{@order_1.created_at}")
                 expect(page).to have_content("#{@order_1.updated_at}")
-                #expect(page).to have_content("#{@order_1.status}")
+                expect(page).to have_content("#{@order_1.status}")
 
                 expect(page).to have_link(@paper.merchant.name)
                 expect(page).to have_link(@paper.name)
                 expect(page).to have_content(@paper.description)
-                expect(page).to have_content("Price: $#{@paper.price}")
-                expect(page).to have_content("Active")
-                expect(page).to have_content("Inventory: #{@paper.inventory}")
-                expect(page).to have_link(@bike_shop.name)
+                expect(page).to have_content("$#{@paper.price}")
+                expect(page).to have_link(@paper.merchant.name)
                 expect(page).to have_css("img[src*='#{@paper.image}']")
 
                 expect(page).to have_link(@tire.merchant.name)
                 expect(page).to have_link(@tire.name)
                 expect(page).to have_content(@tire.description)
-                expect(page).to have_content("Price: $#{@tire.price}")
-                expect(page).to have_content("Active")
-                expect(page).to have_content("Inventory: #{@tire.inventory}")
-                expect(page).to have_link(@bike_shop.name)
+                expect(page).to have_content("$#{@tire.price}")
+                expect(page).to have_link(@tire.merchant.name)
                 expect(page).to have_css("img[src*='#{@tire.image}']")
 
                 expect(page).to have_content("#{@order_1.total_quantity}")
