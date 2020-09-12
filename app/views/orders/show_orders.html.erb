@@ -1,0 +1,8 @@
+<% number = 1 %>
+<% @orders.each do |order| %>
+  <h1>Order: <%=number %> </h1>
+  <% order.items.each do |item| %>
+  <%= item.name %>
+  <% end %>
+  <% number += 1 %>
+  <% end %>
