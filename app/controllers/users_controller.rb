@@ -30,9 +30,15 @@ class UsersController < ApplicationController
   end
 
   def update
-    current_user.update(name: params[:name], address: params[:address], city: params[:city], state: params[:state], zip: params[:zip], email: params[:email])
-    flash[:success] = "Profile updated"
-    redirect_to("/profile")
+    new_email = params[:email]
+    if current_user.id == User.last.id
+      current_user.update(name: params[:name], address: params[:address], city: params[:city], state: params[:state], zip: params[:zip], email: params[:email])
+      flash[:success] = "Profile updated"
+      redirect_to("/profile")
+    else
+      flash[:error] = "This email is already in use."
+      redirect_to("/profile/edit")
+    end
   end
 
   def password_update
