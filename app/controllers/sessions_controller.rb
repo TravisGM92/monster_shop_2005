@@ -10,6 +10,8 @@ class SessionsController < ApplicationController
         flash[:success] = "You are now logged in!"
         if @user.role == "merchant"
           redirect_to controller: "merchant/dashboard"
+        elsif @user.role == "admin"
+          redirect_to controller: "admin/dashboard"
         else
           redirect_to "/profile"
         end

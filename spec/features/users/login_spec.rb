@@ -34,15 +34,17 @@ RSpec.describe "User can login" do
     expect(page).to have_content("You are now logged in!")
   end
 
-end
+  it "If I am an admin user, I am redirected to my admin dashboard. A flash message will confirm I am logged in." do
 
-# User Story 13, User can Login
-#
-# As a visitor
-# When I visit the login path
-# I see a field to enter my email address and password
-# When I submit valid information
-# If I am a regular user, I am redirected to my profile page
-# If I am a merchant user, I am redirected to my merchant dashboard page
-# If I am an admin user, I am redirected to my admin dashboard page
-# And I see a flash message that I am logged in
+    visit "/login"
+
+    fill_in :email, with: @admin.email
+    fill_in :password, with: @admin.password
+
+    click_button "Log In"
+
+    expect(current_path).to eq("/admin")
+    expect(page).to have_content("You are now logged in!")
+  end
+
+end
