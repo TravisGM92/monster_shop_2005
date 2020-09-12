@@ -16,8 +16,8 @@ class Cart
     end
   end
 
-  def remove_item(item)
-    @contents[item] -= 1
+  def remove_one(item)
+      @contents[item.id.to_s] -= 1
   end
 
   def total_items
