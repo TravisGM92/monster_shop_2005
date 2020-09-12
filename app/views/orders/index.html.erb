@@ -1,0 +1,28 @@
+<h1 align = "center">Order Info</h1>
+<center>
+  <table>
+    <tr>
+      <th>Order ID</th>
+      <th>Created</th>
+      <th>Updated</th>
+      <th>Status</th>
+      <th>Total Quantity</th>
+      <th>Grand Total</th>
+    </tr>
+  <% @orders.each do |order| %>
+    <tr>
+    <section id = "order-<%= order.id %>">
+        <td><p><%= link_to "#{order.id}", "/orders/#{order.id}" %></p></td>
+        <td><p><%= order.created_at %></p></td>
+        <td><p><%= order.updated_at %></p></td>
+        <%
+=begin%>
+ <td><p><%= order.status %></p></td> 
+<%
+=end%>
+        <td><p><%= order.total_quantity %></p></td>
+        <td><p><%= order.grandtotal %></p></td>
+      </section>
+    </tr>
+  <% end %>
+</table>
