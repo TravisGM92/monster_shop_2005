@@ -74,6 +74,7 @@ RSpec.describe "Login Page" do
     expect(current_path).to eq("/profile")
     expect(page).to have_content("You're already logged in!")
     expect(page).to_not have_link("Log In")
+    # expect(page).to_not have_link("Register")
   end
 
   it "Merchant employees who are logged in already are redirected to their merchant dashboard." do
@@ -92,13 +93,20 @@ RSpec.describe "Login Page" do
     # expect(page).to_not have_link("Register")
   end
 
-# User Story 15, Users who are logged in already are redirected
-#
-# As a registered user, merchant, or admin
-# When I visit the login path
-# If I am a regular user, I am redirected to my profile page
-# If I am a merchant user, I am redirected to my merchant dashboard page
-# If I am an admin user, I am redirected to my admin dashboard page
-# And I see a flash message that tells me I am already logged in
+  it "Admin users who are logged in already are redirected to their admin dashboard." do
+
+    visit "/login"
+
+    fill_in :email, with: @admin.email
+    fill_in :password, with: @admin.password
+    click_button "Log In"
+    expect(current_path).to eq("/admin")
+
+    visit "/login"
+    expect(current_path).to eq("/admin")
+    expect(page).to have_content("You're already logged in!")
+    expect(page).to_not have_link("Log In")
+    # expect(page).to_not have_link("Register")
+  end
 
 end
