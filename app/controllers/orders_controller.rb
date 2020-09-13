@@ -8,8 +8,12 @@ class OrdersController <ApplicationController
     @order = Order.find(params[:id])
   end
 
+  def show_orders
+    @orders = current_user.orders
+  end
+
   def create
-    order = Order.create(order_params)
+    order = current_user.orders.create(order_params)
     if order.save
       cart.items.each do |item,quantity|
         order.item_orders.create({
@@ -19,13 +23,13 @@ class OrdersController <ApplicationController
           })
       end
       session.delete(:cart)
-      redirect_to "/orders/#{order.id}"
+      flash[:success] = "Your order has been submitted"
+      redirect_to "/profile/orders"
     else
       flash[:notice] = "Please complete address form to create an order."
       render :new
     end
   end
-
 
   private
 

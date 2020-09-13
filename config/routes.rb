@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   patch "/merchants/:id", to: "merchants#update"
   delete "/merchants/:id", to: "merchants#destroy"
 
-
   resources :items, only: [:index, :show]
 
   get "/items/:id/edit", to: "items#edit"
@@ -28,10 +27,13 @@ Rails.application.routes.draw do
   get "/cart", to: "cart#show"
   delete "/cart", to: "cart#empty"
   delete "/cart/:item_id", to: "cart#remove_item"
+  post "/cart/:item_id/add", to: "cart#add_one"
+  post "/cart/:item_id/remove", to: "cart#remove_one"
 
   get "/orders/new", to: "orders#new"
   post "/orders", to: "orders#create"
   get "/orders/:id", to: "orders#show"
+  get '/profile/orders', to: "orders#show_orders"
 
   #Users
   get "/register", to: "users#new"
@@ -39,11 +41,17 @@ Rails.application.routes.draw do
   get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"
 
+  post "/register", to: "users#create"
+
   #profile routes
 
   post "/profile", to: "users#create"
   get "/profile", to: "users#show"
-
+  get "profile/edit", to: 'users#edit', as: :edit_profile
+  post "/profile/update", to: 'users#update'
+  get '/profile/edit_password', to: 'users#password_update'
+  post '/profile/edit_password', to: 'users#new_password'
+  get '/profile/orders/:id', to: 'orders#show'
 
   namespace :merchant do
     get "/", to: "dashboard#index"

@@ -11,10 +11,13 @@ describe User, type: :model do
     it {should validate_uniqueness_of(:email)}
     it {should validate_presence_of(:password)}
   end
+  describe "relationships" do
+    it { should have_many :orders }
+  end
 end
 
 describe "roles" do
-  it "can be created as a default user" do
+  it 'can be created as a default user' do
     user = User.create(name: 'Saryn Mooney', address: '1234 Cherry St', city: 'Denver', state: 'CO', zip: '80209', email: 'saryn@turing.io', password: 'test123', role: 0)
 
     expect(user.role).to eq("default")

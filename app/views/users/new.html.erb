@@ -1,35 +1,33 @@
-<h1 align= "center">Register User</h1>
-<center>
 
-<%= form_tag '/profile' do %>
+  <h1 align= "center">Register User</h1>
+  <center>
+  <%= form_for :user, :as => :user do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %><br />
 
-<%= label_tag(:name, "Name") %>
-<%= text_field_tag(:name) %>
+    <%= f.label :address %>
+    <%= f.text_field :address %><br />
 
-<%= label_tag(:address, "Address") %>
-<%= text_field_tag(:address) %>
+    <%= f.label :city %>
+    <%= f.text_field :city %><br />
 
-<%= label_tag(:city, "City") %>
-<%= text_field_tag(:city) %>
+    <%= f.label :state %>
+    <%= f.text_field :state %><br />
 
-<%= label_tag(:state, "State") %>
-<%= text_field_tag(:state) %>
+    <%= f.label :zip %>
+    <%= f.text_field :zip %><br />
 
-<%= label_tag(:zip, "Zip") %>
-<%= text_field_tag(:zip) %>
+    <%= f.label :email %>
+    <%= f.text_field :email %><br />
 
-<%= label_tag(:email, "Email") %>
-<%= text_field_tag(:email) %>
+    <%= f.label :password %>
+    <%= f.password_field :password, value: nil %>
 
-<%= label_tag(:password, "Password") %>
-<%= text_field_tag(:password) %>
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %>
 
-<%= label_tag(:password_confirmation, "Password Confirmation") %>
-<%= text_field_tag(:password_confirmation) %>
-
-<%= submit_tag "Register New User" %>
-
-<% end %>
+    <%= f.submit 'Register New User' %>
+  <% end %>
 
 
 </center>
