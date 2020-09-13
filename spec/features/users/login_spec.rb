@@ -61,4 +61,29 @@ RSpec.describe "Login Page" do
     expect(page).to have_content("Uh oh... Wrong email or password. Please try again!")
   end
 
+  it "Regular users who are logged in already are redirected to profile page." do
+
+    visit "/login"
+
+    fill_in :email, with: @user.email
+    fill_in :password, with: @user.password
+    click_button "Log In"
+    expect(current_path).to eq("/profile")
+
+    visit "/login"
+    expect(current_path).to eq("/profile")
+    expect(page).to have_content("You're already logged in!")
+    expect(page).to_not have_link("Log In")
+  end
+
+
+# User Story 15, Users who are logged in already are redirected
+#
+# As a registered user, merchant, or admin
+# When I visit the login path
+# If I am a regular user, I am redirected to my profile page
+# If I am a merchant user, I am redirected to my merchant dashboard page
+# If I am an admin user, I am redirected to my admin dashboard page
+# And I see a flash message that tells me I am already logged in
+
 end
