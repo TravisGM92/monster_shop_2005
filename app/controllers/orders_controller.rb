@@ -1,4 +1,4 @@
-class OrdersController <ApplicationController
+class OrdersController < ApplicationController
 
   def new
 
@@ -29,6 +29,15 @@ class OrdersController <ApplicationController
       flash[:notice] = "Please complete address form to create an order."
       render :new
     end
+  end
+
+  def update
+    order = Order.find(params[:id])
+    order.status = "cancelled"
+    order.save
+
+    redirect_to '/profile'
+    flash[:notice] = "Your order has been cancelled"
   end
 
   private
