@@ -76,6 +76,21 @@ RSpec.describe "Login Page" do
     expect(page).to_not have_link("Log In")
   end
 
+  it "Merchant employees who are logged in already are redirected to their merchant dashboard." do
+
+    visit "/login"
+
+    fill_in :email, with: @merchant.email
+    fill_in :password, with: @merchant.password
+    click_button "Log In"
+    expect(current_path).to eq("/merchant")
+
+    visit "/login"
+    expect(current_path).to eq("/merchant")
+    expect(page).to have_content("You're already logged in!")
+    expect(page).to_not have_link("Log In")
+    # expect(page).to_not have_link("Register")
+  end
 
 # User Story 15, Users who are logged in already are redirected
 #
