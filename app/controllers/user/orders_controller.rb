@@ -10,9 +10,9 @@ class User::OrdersController < User::BaseController
 
   def destroy
     order = Order.find(params[:id])
-    order.update(status: "cancelled")
+    order.status = "cancelled"
     order.save
-    
+
     redirect_to '/profile'
     flash[:notice] = "Your order has been cancelled"
   end
