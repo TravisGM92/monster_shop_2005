@@ -52,7 +52,7 @@ Rails.application.routes.draw do
   get '/profile/edit_password', to: 'users#password_update'
   post '/profile/edit_password', to: 'users#new_password'
   get '/profile/orders/:id', to: 'orders#show'
-  patch 'profile/orders/:id', to: "orders#cancel"
+  patch 'profile/orders/:id', to: 'user/orders#destroy'
 
   namespace :merchant do
     get "/", to: "dashboard#index"

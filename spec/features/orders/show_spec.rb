@@ -101,9 +101,10 @@ RSpec.describe("Profile order show page") do
 
                 click_link "Cancel Order"
 
-                #expect(@order_1.status).to eq("cancelled")
                 expect(current_path).to eq("/profile")
                 expect(page).to have_content("Your order has been cancelled")
+                expect(@order_1.status).to eq("cancelled")
+                
               end
         end
     end
