@@ -31,7 +31,7 @@ class OrdersController < ApplicationController
     end
   end
 
-  def update
+  def cancel
     order = Order.find(params[:id])
     order.status = "cancelled"
     order.save
