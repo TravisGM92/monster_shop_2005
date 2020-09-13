@@ -19,6 +19,9 @@
 </section>
 
 <h1 align = "center">Order <%= @order.id %> Info - Status: <%= @order.status %> </h1>
+<% if @order.status != "cancelled" %>
+  <h2><%= link_to "Cancel Order", "/profile/orders/#{@order.id}", method: :patch %></h2>
+<% end %>
 <center>
   <table>
     <tr>

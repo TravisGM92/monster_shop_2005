@@ -8,6 +8,10 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
+  def current_user?
+    current_user && current_user.default?
+  end
+
   def current_merchant?
     current_user.class == Merchant || current_user && current_user.merchant?
   end
