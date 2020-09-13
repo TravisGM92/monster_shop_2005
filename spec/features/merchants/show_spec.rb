@@ -9,15 +9,15 @@ RSpec.describe 'merchant show page', type: :feature do
       @paper = @mike.items.create(name: "Lined Paper", description: "Great for writing on!", price: 20, image: "https://cdn.vertex42.com/WordTemplates/images/printable-lined-paper-wide-ruled.png", inventory: 3)
       @pencil = @mike.items.create(name: "Yellow Pencil", description: "You can write on paper with it!", price: 2, image: "https://images-na.ssl-images-amazon.com/images/I/31BlVr01izL._SX425_.jpg", inventory: 100)
 
-        allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@meg)
     end
 
     describe "When I visit my merchant dashboard('/merchant')" do
       it "I see the name and full address of the merchant I work for" do
-        visit "/merchant"
+        allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@meg)
 
-        expect(page).to have_content("Meg's Bike Shop")
-        expect(page).to have_content("123 Bike Rd.\nDenver, CO 80203")
+        visit '/merchant'
+
+        expect(page).to have_content("\nMeg's Bike Shop\n123 Bike Rd.\nDenver, CO, 80203")
       end
     end
 
