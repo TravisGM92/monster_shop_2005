@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   get "/", to: "welcome#index"
   resources :merchants, only: [:index, :new, :show]
   post "/merchants", to: "merchants#create"
@@ -35,7 +35,7 @@ Rails.application.routes.draw do
   get "/orders/:id", to: "orders#show"
   get '/profile/orders', to: "orders#show_orders"
 
-  #Users
+  #Login/register
   get "/register", to: "users#new"
 
   get "/login", to: "sessions#new"
@@ -52,6 +52,7 @@ Rails.application.routes.draw do
   get '/profile/edit_password', to: 'users#password_update'
   post '/profile/edit_password', to: 'users#new_password'
   get '/profile/orders/:id', to: 'orders#show'
+  patch 'profile/orders/:id', to: 'orders#update_status'
 
   namespace :merchant do
     get "/", to: "dashboard#index"
