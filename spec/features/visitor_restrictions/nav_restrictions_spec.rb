@@ -5,7 +5,6 @@ RSpec.describe 'Site Navigation Restrictions' do
   describe 'As a Visitor' do
     describe "When I try to access any path that begins with the following" do
       it "I see a 404 error (/merchant, /admin, or /profile)" do
-
         visit '/merchant'
 
         expect(page).to have_content("The page you were looking for doesn't exist.")
