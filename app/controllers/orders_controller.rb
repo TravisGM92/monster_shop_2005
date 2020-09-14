@@ -32,7 +32,8 @@ class OrdersController < ApplicationController
   end
 
   def update_status
-    order = current_user.orders.update(status: "cancelled")
+    order = current_user.orders.find(params[:id])
+    order.update(status: "cancelled")
     flash[:success] = "Your order has been cancelled"
     redirect_to("/profile")
   end
