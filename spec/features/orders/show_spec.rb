@@ -81,29 +81,24 @@ RSpec.describe("Profile order show page") do
                 role: 0)
                 allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@ross)
 
-                @order_1 = @ross.orders.create(name: "Bert", address: "123 Sesame St.", city: "NYC", state: "New York", zip: 10001)
+                order_1 = @ross.orders.create(name: "Bert", address: "123 Sesame St.", city: "NYC", state: "New York", zip: 10001)
 
-                @order_2 = @ross.orders.create(name: "Ernie", address: "2343 Sesame St.", city: "NYC", state: "NY", zip: 55555)
-
-                io1 = @paper.item_orders.create(order_id: @order_1.id, quantity: 4, price: 20)
-                io2 = @tire.item_orders.create(order_id: @order_1.id, quantity: 2, price: 100)
-                io3 = @paper.item_orders.create(order_id: @order_2.id, quantity: 5, price: 20)
-                io4 = @tire.item_orders.create(order_id: @order_2.id, quantity: 3, price: 100)
-                io5 = @pencil.item_orders.create(order_id: @order_2.id, quantity: 1, price: 2)
+                io1 = @paper.item_orders.create(order_id: order_1.id, quantity: 4, price: 20)
+                io2 = @tire.item_orders.create(order_id: order_1.id, quantity: 2, price: 100)
 
                 visit "/profile/orders"
 
-                within "#order-#{@order_1.id}" do
-                  click_link "#{@order_1.id}"
+                within "#order-#{order_1.id}" do
+                  click_link "#{order_1.id}"
                 end
 
                 expect(page).to have_link("Cancel Order")
 
                 click_link "Cancel Order"
-              
                 expect(current_path).to eq("/profile")
                 expect(page).to have_content("Your order has been cancelled")
-                expect(@order_1.status).to eq("cancelled")
+
+                expect(order_1.status).to eq("cancelled")
 
               end
         end

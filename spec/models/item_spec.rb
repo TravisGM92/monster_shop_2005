@@ -41,12 +41,12 @@ describe Item, type: :model do
       expect(bottom_three).to eq([@review_3,@review_4,@review_5])
     end
 
-    it 'no orders' do
-      expect(@chain.no_orders?).to eq(true)
-      order = Order.create(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033)
-      order.item_orders.create(item: @chain, price: @chain.price, quantity: 2)
-      expect(@chain.no_orders?).to eq(false)
-    end
+    # it 'no orders' do
+    #   expect(@chain.no_orders?).to eq(true)
+    #   order = Order.create(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033)
+    #   order.item_orders.create(item: @chain, price: @chain.price, quantity: 2)
+    #   expect(@chain.no_orders?).to eq(false)
+    # end
   end
 
   describe "class methods" do
