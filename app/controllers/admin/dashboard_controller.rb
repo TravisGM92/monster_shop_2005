@@ -2,6 +2,7 @@ class Admin::DashboardController < Admin::BaseController
   before_action :require_admin
 
   def index
+    @orders = Order.order(status: :asc)
   end
 
   private
