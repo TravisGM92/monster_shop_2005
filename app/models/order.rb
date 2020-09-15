@@ -20,4 +20,11 @@ class Order < ApplicationRecord
     self.update(status: "cancelled")
   end
 
+  # def sort_val
+  #   return 0 if self.status = 'packaged'
+  #   return 1 if self.status = 'pending'
+  #   return 2 if self.status = 'shipped'
+  #   return 3 if self.status = 'canceled'
+  # end
+
 end
