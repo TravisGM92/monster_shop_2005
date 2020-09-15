@@ -68,7 +68,6 @@ RSpec.describe "Items Index Page" do
       @bike = @meg.items.create(name: "Street Bike", description: "Brand new", price: 200, image: "https://www.bikeride.com/images/bike/Orro-FE-Wiggle-Profile-Scaled.jpg", inventory: 2, quantity_purchased: 1)
 
       visit '/items'
-
       expect(page).to have_content("Most Popular Items")
       expect(page).to have_content("#{@tire.name}: #{@tire.quantity_purchased}")
       expect(page).to have_content("#{@pull_toy.name}: #{@pull_toy.quantity_purchased}")

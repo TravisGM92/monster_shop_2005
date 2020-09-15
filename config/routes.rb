@@ -59,6 +59,8 @@ Rails.application.routes.draw do
     patch "/orders/:id", to: "item_orders#update"
   end
 
+  post '/merchant/fulfill/:id', to: "merchants#fulfill"
+
   namespace :admin do
     get "/", to: "dashboard#index"
     get "/users", to: "users#index"

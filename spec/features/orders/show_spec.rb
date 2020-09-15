@@ -84,7 +84,7 @@ RSpec.describe("Profile order show page") do
                 order_1 = @ross.orders.create(name: "Bert", address: "123 Sesame St.", city: "NYC", state: "New York", zip: 10001)
 
                 io1 = @paper.item_orders.create(order_id: order_1.id, quantity: 4, price: 20)
-                io2 = @tire.item_orders.create(order_id: order_1.id, quantity: 2, price: 100)
+                # io2 = @tire.item_orders.create(order_id: order_1.id, quantity: 2, price: 100)
 
                 visit "/profile/orders"
 
@@ -123,7 +123,7 @@ RSpec.describe("Profile order show page") do
                   allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@ross)
 
                   order_1 = @ross.orders.create(name: "Bert", address: "123 Sesame St.", city: "NYC", state: "New York", zip: 10001)
-                  order_2 = @ross.orders.create(name: "Bert", address: "123 Sesame St.", city: "NYC", state: "New York", zip: 10001)
+                  order_2 = @ross.orders.create(name: "Georgy Brown", address: "123 Uptown St.", city: "NYC", state: "New York", zip: 10001)
 
                   io1 = @paper.item_orders.create(order_id: order_1.id, quantity: 4, price: 20)
                   io2 = @tire.item_orders.create(order_id: order_1.id, quantity: 2, price: 100)
@@ -140,6 +140,7 @@ RSpec.describe("Profile order show page") do
                   click_link "Cancel Order"
                   expect(current_path).to eq("/profile")
                   expect(page).to have_content("Your order has been cancelled")
+
                   expect(Order.first.status).to eq("cancelled")
                   expect(ItemOrder.first.status).to eq("unfulfilled")
                   expect(order_2.status).to eq("pending")
