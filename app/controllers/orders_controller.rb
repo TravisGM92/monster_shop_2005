@@ -17,6 +17,8 @@ class OrdersController < ApplicationController
     if order.save
       cart.items.each do |item,quantity|
         new_quantity = (item.inventory - quantity)
+        item_to_take = Item.find(item.id)
+        item_to_take.update(inventory: new_quantity)
         order.item_orders.create({
           item: item,
           quantity: quantity,
@@ -32,7 +34,7 @@ class OrdersController < ApplicationController
     end
   end
 
-  def update_status
+  def update
     order = current_user.orders.find(params[:id])
     order.update(status: "cancelled")
 

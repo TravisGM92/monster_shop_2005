@@ -17,10 +17,3 @@ class Order < ApplicationRecord
   end
 
 end
-
-# Item.join(:item_orders)
-# .select('items.id, sum(item_order.quantity) AS total', 'items.name')
-# .where('item_orders.item_id = items.id')
-# .group('items.id')
-# .order('total desc')
-# .limit(5)
