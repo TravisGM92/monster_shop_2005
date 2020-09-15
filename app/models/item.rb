@@ -25,6 +25,11 @@ class Item < ApplicationRecord
     item_orders.empty?
   end
 
+  def update_inventory(order_quantity)
+    self.inventory -= order_quantity
+    self.save
+  end
+
   def self.top_five
     order(quantity_purchased: :desc).limit(5)
   end
