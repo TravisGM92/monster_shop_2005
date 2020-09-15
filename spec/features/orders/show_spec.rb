@@ -143,7 +143,6 @@ RSpec.describe("Profile order show page") do
 
                   expect(Order.first.status).to eq("cancelled")
                   expect(ItemOrder.first.status).to eq("unfulfilled")
-                  expect(order_2.status).to eq("pending")
                 end
         end
     end
