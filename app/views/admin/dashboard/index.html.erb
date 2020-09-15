@@ -1,1 +1,21 @@
 <h1>Admin Dashboard</h1>
+<h1 align = "center">Order Info</h1>
+<center>
+  <table>
+    <tr>
+      <th>Order ID</th>
+      <th>Name</th>
+      <th>Create</th>
+      <th>Status</th>
+    </tr>
+  <% @orders.each do |order| %>
+    <tr>
+    <section class = "orders" id = "order-<%= order.id %>">
+        <td><p><%= order.id %></p></td>
+        <td><p><%= link_to "#{order.name}", "/admin/users/#{order.user.id}" %></p></td>
+        <td><p><%= order.created_at %></p></td>
+        <td><p><%= order.status %></p></td> 
+      </section>
+    </tr>
+  <% end %>
+</table>
