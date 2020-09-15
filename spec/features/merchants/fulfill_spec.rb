@@ -17,27 +17,29 @@ RSpec.describe 'merchant show page', type: :feature do
       email: 'ross_is_cool@turing.io',
       password: 'test124',
       role: 0)
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@ross)
-
-      order_1 = @ross.orders.create(name: "Bert", address: "123 Sesame St.", city: "NYC", state: "New York", zip: 10001)
-      order_2 = @ross.orders.create(name: "Georgy Brown", address: "123 Uptown St.", city: "NYC", state: "New York", zip: 10001)
 
 
-      io1 = @paper.item_orders.create(order_id: order_1.id, quantity: 4, price: 20)
-      io2 = @tire.item_orders.create(order_id: order_1.id, quantity: 2, price: 100)
-      io3 = @paper.item_orders.create(order_id: order_2.id, quantity: 2, price: 10)
 
     end
 
-    describe "When I visit my merchant dashboard('/merchant')" do
-      it "I see the name and full address of the merchant I work for" do
-        allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@meg)
+    describe "When all items in an order have been fulfilled by their merchants" do
+      it "The order status changes from 'pending' to 'packaged' (one item on one order)" do
+        allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@mike)
+        order_1 = @ross.orders.create(name: "Bert", address: "123 Sesame St.", city: "NYC", state: "New York", zip: 10001)
 
-        visit '/merchant'
 
-        expect(page).to have_content("\nMeg's Bike Shop\n123 Bike Rd.\nDenver, CO, 80203")
+        io1 = @paper.item_orders.create!(order_id: order_1.id, quantity: 4, price: 20)
+        visit "/merchant"
+
+        expect(page).to have_content("Order for:")
+        expect(page).to have_content("Order for:\nLined Paper")
+        expect(page).to have_button("Fulfill")
+        click_button("Fulfill")
+        expect(current_path).to eq("/merchant")
+        expect(@ross.orders[0].status).to eq("packaged")
       end
     end
+
 
   end
 end
