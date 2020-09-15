@@ -16,6 +16,9 @@ class OrdersController < ApplicationController
     order = current_user.orders.create(order_params)
     if order.save
       cart.items.each do |item,quantity|
+        new_quantity = (item.inventory - quantity)
+        item_to_take = Item.find(item.id)
+        item_to_take.update(inventory: new_quantity)
         order.item_orders.create({
           item: item,
           quantity: quantity,
@@ -31,9 +34,18 @@ class OrdersController < ApplicationController
     end
   end
 
-  def update_status
+  def update
     order = current_user.orders.find(params[:id])
     order.update(status: "cancelled")
+
+    item_order = ItemOrder.where(order_id: params[:id])
+    item_order.each do |item|
+      item_to_restock = Item.find(item.item_id)
+      new_quantity = (item.quantity + item_to_restock.inventory)
+      item_to_restock.update(inventory: new_quantity)
+      item_order.update(status: "unfulfilled")
+    end
+
     flash[:success] = "Your order has been cancelled"
     redirect_to("/profile")
   end
