@@ -25,4 +25,16 @@ class Merchant < ApplicationRecord
     item_orders.distinct.joins(:order).pluck(:city)
   end
 
+  def merchant_orders
+    if Order.all == []
+      return nil
+    else
+      numbs = Order.first.items.pluck(:id)
+      merchant_name = Merchant.joins(:items).where(items: {id: numbs})
+      if self.name == merchant_name[0].name
+        return Order.first
+      end
+    end
+  end
+
 end
