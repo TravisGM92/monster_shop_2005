@@ -6,7 +6,7 @@ class Order < ApplicationRecord
   has_many :items, through: :item_orders
   belongs_to :user
 
-  enum status: %w(pending packaged shipped cancelled)
+  enum status: %w(packaged pending shipped cancelled)
 
   def grandtotal
     item_orders.sum('price * quantity')
@@ -15,12 +15,5 @@ class Order < ApplicationRecord
   def total_quantity
     item_orders.sum('quantity')
   end
-
-  # def sort_val
-  #   return 0 if self.status = 'packaged'
-  #   return 1 if self.status = 'pending'
-  #   return 2 if self.status = 'shipped'
-  #   return 3 if self.status = 'canceled'
-  # end
 
 end
