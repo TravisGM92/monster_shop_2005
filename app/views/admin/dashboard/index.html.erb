@@ -8,9 +8,10 @@
       <th>Create</th>
       <th>Status</th>
     </tr>
+  <div id = "orders">
   <% @orders.each do |order| %>
     <tr>
-    <section class = "orders" id = "order-<%= order.id %>">
+    <section id = "order-<%= order.id %>">
         <td><p><%= order.id %></p></td>
         <td><p><%= link_to "#{order.name}", "/admin/users/#{order.user.id}" %></p></td>
         <td><p><%= order.created_at %></p></td>
@@ -18,4 +19,5 @@
       </section>
     </tr>
   <% end %>
+  </div>
 </table>
