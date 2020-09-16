@@ -1,15 +1,14 @@
 class SessionsController < ApplicationController
 
   def new
-    if @current_user = session[:current_user]
-      require "pry"; binding.pry
-      if @current_user["role"] == "merchant"
+    if current_user
+      if current_user.role == "merchant_employee"
         redirect_to controller: "merchant/dashboard"
         flash[:notice] = "You're already logged in!"
-      elsif @current_user["role"] == "admin"
+      elsif current_user.role == "admin"
         redirect_to controller: "admin/dashboard"
         flash[:notice] = "You're already logged in!"
-      elsif
+      elsif current_user.role == "default"
         redirect_to "/profile"
         flash[:notice] = "You're already logged in!"
       else
@@ -40,9 +39,6 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    # require "pry"; binding.pry
-    # session.delete(:user_id)
-    # session.delete(:cart)
     reset_session
     flash[:success] = "You have logged out. See you next time!"
     redirect_to '/'

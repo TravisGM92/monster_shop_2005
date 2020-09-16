@@ -63,13 +63,22 @@ RSpec.describe "Login Page" do
 
   it "Regular users who are logged in already are redirected to profile page." do
 
+    # User Story 15, Users who are logged in already are redirected
+    #
+    # As a registered user, merchant, or admin
+    # When I visit the login path
+    # If I am a regular user, I am redirected to my profile page
+    # If I am a merchant user, I am redirected to my merchant dashboard page
+    # If I am an admin user, I am redirected to my admin dashboard page
+    # And I see a flash message that tells me I am already logged in
+    #
     visit "/login"
 
     fill_in :email, with: @user.email
     fill_in :password, with: @user.password
     click_button "Log In"
     expect(current_path).to eq("/profile")
-
+    # allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
     visit "/login"
     expect(current_path).to eq("/profile")
     expect(page).to have_content("You're already logged in!")
