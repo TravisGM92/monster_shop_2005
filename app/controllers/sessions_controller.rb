@@ -2,6 +2,7 @@ class SessionsController < ApplicationController
 
   def new
     if @current_user = session[:current_user]
+      require "pry"; binding.pry
       if @current_user["role"] == "merchant"
         redirect_to controller: "merchant/dashboard"
         flash[:notice] = "You're already logged in!"
@@ -19,10 +20,10 @@ class SessionsController < ApplicationController
 
   def create
     if @user = User.find_by(email: params[:email])
-      session[:current_user] = @user
       if @user.authenticate(params[:password])
+        session[:user_id] = @user.id
         flash[:success] = "You are now logged in!"
-        if @user.role == "merchant"
+        if @user.role == "merchant_employee"
           redirect_to controller: "merchant/dashboard"
         elsif @user.role == "admin"
           redirect_to controller: "admin/dashboard"
@@ -36,6 +37,15 @@ class SessionsController < ApplicationController
     else
       flash[:error] = "Hmm... We have no record of this account. Please register before logging in!"
     end
+  end
+
+  def destroy
+    # require "pry"; binding.pry
+    # session.delete(:user_id)
+    # session.delete(:cart)
+    reset_session
+    flash[:success] = "You have logged out. See you next time!"
+    redirect_to '/'
   end
 
 end
