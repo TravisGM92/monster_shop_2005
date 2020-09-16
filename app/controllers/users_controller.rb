@@ -8,18 +8,16 @@ class UsersController < ApplicationController
     if User.all == []
       render file: "/public/404"
     else
-      @user = User.last
+      @user = current_user
     end
   end
 
   def create
     @new_user = User.new(user_params)
     if @new_user.save
+      session[:user_id] = @new_user.id
       flash[:success] = "Welcome #{@new_user.name}! Thank you for registering!"
       redirect_to "/profile"
-      # respond_to do |format|
-      #   format.html { redirect_to '/' }
-      # end
     else
       flash[:error] = @new_user.errors.full_messages.to_sentence
       redirect_to '/register'
