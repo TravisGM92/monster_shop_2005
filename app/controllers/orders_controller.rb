@@ -34,10 +34,9 @@ class OrdersController < ApplicationController
     end
   end
 
-  def update
+  def cancel
     order = current_user.orders.find(params[:id])
     order.update(status: "cancelled")
-
     item_order = ItemOrder.where(order_id: params[:id])
     item_order.each do |item|
       item_to_restock = Item.find(item.item_id)
@@ -45,7 +44,6 @@ class OrdersController < ApplicationController
       item_to_restock.update(inventory: new_quantity)
       item_order.update(status: "unfulfilled")
     end
-
     flash[:success] = "Your order has been cancelled"
     redirect_to("/profile")
   end
