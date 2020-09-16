@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   get "/", to: "welcome#index"
   resources :merchants, only: [:index, :new, :show]
   post "/merchants", to: "merchants#create"
@@ -35,14 +35,15 @@ Rails.application.routes.draw do
 
   #Users
   get "/register", to: "users#new"
+  post "/users", to: "users#create"
+
+  #profile routes
+  get "/profile", to: "users#show"
 
   get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"
+  delete "/logout", to: "sessions#destroy"
 
-  #profile routes
-
-  post "/profile", to: "users#create"
-  get "/profile", to: "users#show"
 
 
   namespace :merchant do
