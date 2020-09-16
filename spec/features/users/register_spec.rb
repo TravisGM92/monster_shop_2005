@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'User registration page', type: :feature do
+RSpec.describe 'User registration page' do
   describe 'As a visitor' do
     it 'I can register a new user' do
       visit '/register'
@@ -28,7 +28,7 @@ RSpec.describe 'User registration page', type: :feature do
 
     end
 
-    it 'I cant create a user if all fields are not filled in' do
+    it "I can't create a user if all fields are not filled in" do
         visit '/register'
 
         name = "Mike Dao"
@@ -50,7 +50,6 @@ RSpec.describe 'User registration page', type: :feature do
         fill_in :password_confirmation, with: password_confirm
 
         click_button "Register New User"
-
         expect(current_path).to eq('/register')
 
 
@@ -86,7 +85,6 @@ RSpec.describe 'User registration page', type: :feature do
       expect(current_path).to eq('/register')
 
       expect(page).to have_content("Email has already been taken")
-      # expect(page).to have_content("Mike Dao")
       # expect(page).to have_field('Name', with: 'Mike Dao')
       # expect(page).to have_field('Address', with: '123 Chicken Nugget Dr.')
       # expect(page).to have_field('City', with: 'Denver')
