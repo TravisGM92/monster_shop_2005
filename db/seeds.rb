@@ -13,6 +13,7 @@ Order.destroy_all
 User.destroy_all
 
 #merchants
+
 # @mike = Merchant.create(name: "Mike's Print Shop", address: '123 Paper Rd.', city: 'Denver', state: 'CO', zip: 80203)
 # @meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
 # @tire = @meg.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
@@ -42,3 +43,4 @@ User.destroy_all
 # io4 = @backpack.item_orders.create(order_id: order_2.id, quantity: 2, price: 10)
 # io5 = @rock.item_orders.create(order_id: order_2.id, quantity: 1, price: 10)
 # io6 = @pencil.item_orders.create(order_id: order_2.id, quantity: 5, price: 10)
+
