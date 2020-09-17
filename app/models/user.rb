@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   has_many :orders
 
-  enum role: %w(default merchant admin)
+  enum role: %w(default merchant_employee admin)
 
   has_many :orders
-  end
+end
