@@ -19,8 +19,9 @@ class SessionsController < ApplicationController
 
   def create
     if @user = User.find_by(email: params[:email])
-      session[:current_user] = @user
+      # session[:current_user] = @user.id
       if @user.authenticate(params[:password])
+        session[:current_user] = @user.id
         flash[:success] = "You are now logged in!"
         if @user.role == "merchant"
           redirect_to controller: "merchant/dashboard"
