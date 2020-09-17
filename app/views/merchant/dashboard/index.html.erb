@@ -7,9 +7,9 @@
 <% if @merchant_employee.class == Merchant && @merchant_employee.merchant_orders != nil %>
   <h2>Order for:</h2>
   <%= form_tag "/merchant/fulfill/#{@merchant_employee.merchant_orders[:id]}", method: :post do %>
-  <% @merchant_employee.merchant_orders.items.each do |item| %>
-    <p><%= item.name %></p>
+    <% @merchant_employee.merchant_orders.items.each do |item| %>
+      <p><%= item.name %></p>
     <% end %>
     <%= submit_tag 'Fulfill' %>
   <%end %>
-  <% end %>
+<% end %>
