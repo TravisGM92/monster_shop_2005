@@ -5,7 +5,8 @@ class ApplicationController < ActionController::Base
   helper_method :cart
 
   def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    # require "pry"; binding.pry
+    @current_user ||= User.find(session[:current_user]) if session[:current_user]
   end
 
   def current_user?
