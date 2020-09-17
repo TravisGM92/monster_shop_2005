@@ -2,7 +2,10 @@ require 'rails_helper'
 
 RSpec.describe 'merchant show page', type: :feature do
   describe 'As a merchant employee' do
+
     before :each do
+      @merchant_employee = User.create!(name: "Dwight Kurt Schrute III", address: "123 Beet Farm", city: "Scranton", state: "PA", zip: 18510, email: "d-money@email.com", password: "angela", role: 1)
+
       @mike = Merchant.create(name: "Mike's Print Shop", address: '123 Paper Rd.', city: 'Denver', state: 'CO', zip: 80203)
       @meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
       @tire = @meg.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
@@ -17,19 +20,17 @@ RSpec.describe 'merchant show page', type: :feature do
       email: 'ross_is_cool@turing.io',
       password: 'test124',
       role: 0)
-
-
-
     end
 
     describe "When all items in an order have been fulfilled by their merchants" do
       it "The order status changes from 'pending' to 'packaged' (one item on one order)" do
-        allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@mike)
+
+        allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@merchant_employee)
+
         order_1 = @ross.orders.create(name: "Bert", address: "123 Sesame St.", city: "NYC", state: "New York", zip: 10001)
-
-
         io1 = @paper.item_orders.create!(order_id: order_1.id, quantity: 4, price: 20)
-        visit "/merchant"
+
+        expect(current_path).to eq("/merchant")
 
         expect(page).to have_content("Order for:")
         expect(page).to have_content("Order for:\nLined Paper")
@@ -42,13 +43,14 @@ RSpec.describe 'merchant show page', type: :feature do
 
     describe "When all items in an order have been fulfilled by their merchants" do
       it "The order status changes from 'pending' to 'packaged' (two items, both from same merchant, one order)" do
-        allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@mike)
-        order_1 = @ross.orders.create(name: "Bert", address: "123 Sesame St.", city: "NYC", state: "New York", zip: 10001)
 
+        allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@merchant_employee)
+
+        order_1 = @ross.orders.create(name: "Bert", address: "123 Sesame St.", city: "NYC", state: "New York", zip: 10001)
         io1 = @paper.item_orders.create!(order_id: order_1.id, quantity: 4, price: 20)
         io2 = @pencil.item_orders.create!(order_id: order_1.id, quantity: 3, price: 10)
 
-        visit "/merchant"
+        expect(current_path).to eq("/merchant")
 
         expect(page).to have_content("Order for:")
         expect(page).to have_content("\nOrder for:\nLined Paper\nYellow Pencil")

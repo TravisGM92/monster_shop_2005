@@ -4,8 +4,8 @@ RSpec.describe "Login Page" do
 
   before(:each) do
     @user = User.create!(name: "Elah Pillado", address: "123 Chase Rd", city: "Marietta", state: "GA", zip: 30008, email: "elah@email.com", password: "password", role: 0)
-    @merchant = User.create!(name: "Sinai Pillado", address: "123 Chase Rd", city: "Marietta", state: "GA", zip: 30008, email: "sinai@email.com", password: "password", role: 1)
-    @admin = User.create!(name: "Nelcy Pillado", address: "123 Kedvale Ave", city: "Chicago", state: "IL", zip: 60623, email: "nelcy@email.com", password: "password", role: 2)
+    @merchant_employee = User.create!(name: "Nelcy Pillado", address: "123 Kedvale Ave", city: "Chicago", state: "IL", zip: 60623, email: "nelcy@email.com", password: "password", role: 1)
+    @admin = User.create(name: "Michael Scott", address: "126 Kellum Court", city: "Scranton", state: "PA", zip: 18510, email: "michaelscarn@email.com", password: "holly", password_confirmation: "holly", role: 2)
   end
 
   it "If I am a regular user, I am redirected to my profile page. A flash message will confirm I am logged in." do
@@ -25,8 +25,8 @@ RSpec.describe "Login Page" do
 
     visit "/login"
 
-    fill_in :email, with: @merchant.email
-    fill_in :password, with: @merchant.password
+    fill_in :email, with: @merchant_employee.email
+    fill_in :password, with: @merchant_employee.password
 
     click_button "Log In"
 
@@ -69,28 +69,27 @@ RSpec.describe "Login Page" do
     fill_in :password, with: @user.password
     click_button "Log In"
     expect(current_path).to eq("/profile")
-
     visit "/login"
     expect(current_path).to eq("/profile")
     expect(page).to have_content("You're already logged in!")
-    # expect(page).to_not have_link("Log In")
-    # expect(page).to_not have_link("Register")
+    expect(page).to_not have_link("Log In")
+    expect(page).to_not have_link("Register")
   end
 
   it "Merchant employees who are logged in already are redirected to their merchant dashboard." do
 
     visit "/login"
 
-    fill_in :email, with: @merchant.email
-    fill_in :password, with: @merchant.password
+    fill_in :email, with: @merchant_employee.email
+    fill_in :password, with: @merchant_employee.password
     click_button "Log In"
     expect(current_path).to eq("/merchant")
 
     visit "/login"
     expect(current_path).to eq("/merchant")
     expect(page).to have_content("You're already logged in!")
-    # expect(page).to_not have_link("Log In")
-    # expect(page).to_not have_link("Register")
+    expect(page).to_not have_link("Log In")
+    expect(page).to_not have_link("Register")
   end
 
   it "Admin users who are logged in already are redirected to their admin dashboard." do
@@ -105,9 +104,9 @@ RSpec.describe "Login Page" do
     visit "/login"
     expect(current_path).to eq("/admin")
     expect(page).to have_content("You're already logged in!")
-    # expect(page).to_not have_link("Log In")
-    # save_and_open_page
-    # expect(page).to_not have_link("Register")
+    expect(page).to_not have_link("Log In")
+    expect(page).to_not have_link("Register")
+    expect(page).to_not have_link("Cart")
   end
 
 end
