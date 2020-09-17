@@ -1,13 +1,13 @@
 <h1>Merchant Dashboard</h1>
 
-<h1><%=@user.name%></h1>
-<h2><%=@user.address%></h2>
-<h2><%=@user.city%>, <%=@user.state%>, <%= @user.zip%></h2>
+<h1><%=@merchant_employee.name%></h1>
+<h2><%=@merchant_employee.address%></h2>
+<h2><%=@merchant_employee.city%>, <%=@merchant_employee.state%>, <%= @merchant_employee.zip%></h2>
 <br>
-<% if @user.class == Merchant && @user.merchant_orders != nil %>
+<% if @merchant_employee.class == Merchant && @merchant_employee.merchant_orders != nil %>
   <h2>Order for:</h2>
-  <%= form_tag "/merchant/fulfill/#{@user.merchant_orders[:id]}", method: :post do %>
-  <% @user.merchant_orders.items.each do |item| %>
+  <%= form_tag "/merchant/fulfill/#{@merchant_employee.merchant_orders[:id]}", method: :post do %>
+  <% @merchant_employee.merchant_orders.items.each do |item| %>
     <p><%= item.name %></p>
     <% end %>
     <%= submit_tag 'Fulfill' %>
