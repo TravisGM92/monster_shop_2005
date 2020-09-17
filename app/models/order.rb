@@ -16,4 +16,8 @@ class Order < ApplicationRecord
     item_orders.sum('quantity')
   end
 
+  def ship
+    self.update(status: "shipped")
+  end
+
 end
