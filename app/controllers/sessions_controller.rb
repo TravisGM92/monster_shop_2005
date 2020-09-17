@@ -1,11 +1,12 @@
 class SessionsController < ApplicationController
 
   def new
-    if @current_user = session[:current_user]
-      if @current_user["role"] == "merchant"
+    if session[:current_user]
+      user = User.find(session[:current_user])
+      if user.role == "merchant"
         redirect_to controller: "merchant/dashboard"
         flash[:notice] = "You're already logged in!"
-      elsif @current_user["role"] == "admin"
+      elsif user.role == "admin"
         redirect_to controller: "admin/dashboard"
         flash[:notice] = "You're already logged in!"
       elsif
@@ -19,8 +20,9 @@ class SessionsController < ApplicationController
 
   def create
     if @user = User.find_by(email: params[:email])
-      session[:current_user] = @user
+      # session[:current_user] = @user.id
       if @user.authenticate(params[:password])
+        session[:current_user] = @user.id
         flash[:success] = "You are now logged in!"
         if @user.role == "merchant"
           redirect_to controller: "merchant/dashboard"

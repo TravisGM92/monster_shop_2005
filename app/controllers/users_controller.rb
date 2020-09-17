@@ -7,8 +7,6 @@ class UsersController < ApplicationController
   def show
     if User.all == []
       render file: "/public/404"
-    elsif current_user.nil?
-      @user = User.last
     else
       @user = current_user
     end
@@ -18,6 +16,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash[:success] = "Welcome #{@user.name}! Thank you for registering!"
+      session[:current_user] = @user.id
       redirect_to "/profile"
     else
       flash[:error] = @user.errors.full_messages.to_sentence
