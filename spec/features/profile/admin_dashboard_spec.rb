@@ -85,5 +85,32 @@ RSpec.describe 'Admin Dashboard' do
             #     # expect(page.all("orders")).to eq()
             # end
         end
+        it "can ship an order using a button" do
+            allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@susan)
+            
+            visit "/admin"
+
+            within "#order-#{@order_1.id}" do
+                expect(page).to_not have_button("Ship")
+            end
+
+            within "#order-#{@order_2.id}" do
+                expect(page).to have_button("Ship")
+            end
+
+            within "#order-#{@order_3.id}" do
+                expect(page).to_not have_button("Ship")
+            end
+
+            click_button "Ship"
+            within "#order-#{@order_2.id}" do
+                expect(page).to have_content("shipped")
+            end
+
+            @order_2.reload
+
+            assert @order_2.status == "shipped"
+
+        end
     end
 end
