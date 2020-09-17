@@ -15,7 +15,12 @@
         <td><p><%= order.id %></p></td>
         <td><p><%= link_to "#{order.name}", "/admin/users/#{order.user.id}" %></p></td>
         <td><p><%= order.created_at %></p></td>
-        <td><p><%= order.status %></p></td> 
+        <td>
+            <p><%= order.status %></p>
+            <%if order.status == "packaged"%>
+            <%= button_to  "Ship", {action: "ship_it", id: order.id} %>
+            <%end%>
+        </td> 
       </section>
     </tr>
   <% end %>
