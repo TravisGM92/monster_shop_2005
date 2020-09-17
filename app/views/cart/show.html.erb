@@ -1,4 +1,7 @@
 <h1>Cart</h1>
+<% if current_user.nil? %>
+<h2>You must <%=link_to "register", "/register"%> or <%=link_to "login", "/login"%> to finish the checkout process</h2>
+<% end %>
 
 <% if !@items.empty? %>
 <center>
@@ -10,7 +13,8 @@
     <th>Quantity</th>
     <th>Subtotal</th>
   </tr>
-  <% @items.each do |item,quantity| %>
+  <% @items.each do |item_id,quantity| %>
+    <% item = Item.find(item_id)%>
     <tr id= "cart-item-<%=item.id%>">
       <td>
         <p align = "center">
@@ -32,6 +36,8 @@
         <center>
           <p><%=quantity%></p>
           <p><%= link_to "Remove", "/cart/#{item.id}",method: :delete %></p>
+          <%= button_to "Add Another!", "/cart/#{item.id}/add" %>
+          <%= button_to "Put One Back!", "/cart/#{item.id}/remove" %>
         </center>
         </td>
       <td>

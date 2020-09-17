@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_24_200540) do
+ActiveRecord::Schema.define(version: 2020_09_15_152428) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2019_08_24_200540) do
     t.integer "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "status", default: "unfulfilled"
     t.index ["item_id"], name: "index_item_orders_on_item_id"
     t.index ["order_id"], name: "index_item_orders_on_order_id"
   end
@@ -36,6 +37,7 @@ ActiveRecord::Schema.define(version: 2019_08_24_200540) do
     t.bigint "merchant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "quantity_purchased", default: 0
     t.index ["merchant_id"], name: "index_items_on_merchant_id"
   end
 
@@ -57,6 +59,9 @@ ActiveRecord::Schema.define(version: 2019_08_24_200540) do
     t.integer "zip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.integer "status", default: 1
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -67,8 +72,20 @@ ActiveRecord::Schema.define(version: 2019_08_24_200540) do
     t.index ["item_id"], name: "index_reviews_on_item_id"
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "address"
+    t.string "city"
+    t.string "state"
+    t.integer "zip"
+    t.string "email"
+    t.string "password_digest"
+    t.integer "role", default: 0
+  end
+
   add_foreign_key "item_orders", "items"
   add_foreign_key "item_orders", "orders"
   add_foreign_key "items", "merchants"
+  add_foreign_key "orders", "users"
   add_foreign_key "reviews", "items"
 end

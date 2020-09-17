@@ -1,4 +1,4 @@
-class Merchant <ApplicationRecord
+class Merchant < ApplicationRecord
   has_many :items, dependent: :destroy
   has_many :item_orders, through: :items
 
@@ -23,6 +23,18 @@ class Merchant <ApplicationRecord
 
   def distinct_cities
     item_orders.distinct.joins(:order).pluck(:city)
+  end
+
+  def merchant_orders
+    if Order.all == []
+      return nil
+    else
+      numbs = Order.first.items.pluck(:id)
+      merchant_name = Merchant.joins(:items).where(items: {id: numbs})
+      if self.name == merchant_name[0].name
+        return Order.first
+      end
+    end
   end
 
 end

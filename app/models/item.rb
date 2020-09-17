@@ -1,4 +1,4 @@
-class Item <ApplicationRecord
+class Item < ApplicationRecord
   belongs_to :merchant
   has_many :reviews, dependent: :destroy
   has_many :item_orders
@@ -25,4 +25,26 @@ class Item <ApplicationRecord
     item_orders.empty?
   end
 
+  def update_inventory(order_quantity)
+    self.inventory -= order_quantity
+    self.save
+  end
+
+  def self.top_five
+    order(quantity_purchased: :desc).limit(5)
+  end
+
+  def self.lowest_five
+    order(quantity_purchased: :asc).limit(5)
+  end
+
 end
+
+# Notes for Top Five action 
+
+# Item.join(:item_orders)
+# .select('items.id, sum(item_order.quantity) AS total', 'items.name')
+# .where('item_orders.item_id = items.id')
+# .group('items.id')
+# .order('total desc')
+# .limit(5)

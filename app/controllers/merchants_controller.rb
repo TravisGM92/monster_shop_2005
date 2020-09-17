@@ -36,6 +36,12 @@ class MerchantsController <ApplicationController
     end
   end
 
+  def fulfill
+    order = Order.find(params[:id])
+    order.update(status: "packaged")
+    redirect_to("/merchant")
+  end
+
   def destroy
     Merchant.destroy(params[:id])
     redirect_to '/merchants'

@@ -1,0 +1,15 @@
+<h1 align= "center">Profile</h1>
+<p>Name: <%=@user.name %>
+<p>Address: <%=@user.address %>
+<p>City: <%=@user.city %>
+<p>State: <%=@user.state %>
+<p>Zip: <%=@user.zip %>
+<p>Email: <%=@user.email %>
+<p>Role: <%=@user.role %>
+<br>
+<%=  %>
+<%= link_to 'Edit profile', '/profile/edit' %>
+<br>
+<%= link_to 'Edit password', '/profile/edit_password' %>
+
+<%= link_to 'My Orders', '/profile/orders' %>
