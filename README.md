@@ -24,37 +24,8 @@ Keep in mind this project was about backend development and minimal frontend dev
 3. Merchant Employee - this user works for a merchant. They can fulfill orders on behalf of their merchant. They also have the same permissions as a regular user (adding items to a cart and checking out)
 4. Admin User - a registered user who has "superuser" access to all areas of the application; user is logged in to perform their work
 
-## Order Status
+## All User stories
 
-1. 'pending' means a user has placed items in a cart and "checked out" to create an order, merchants may or may not have fulfilled any items yet
-2. 'packaged' means all merchants have fulfilled their items for the order, and has been packaged and ready to ship
-3. 'shipped' means an admin has 'shipped' a package and can no longer be cancelled by a user
-4. 'cancelled' - only 'pending' and 'packaged' orders can be cancelled
-
-## Timeframe
-The following is an anticipated timeline of how these stories should be completed in order to be finished by 4/16/20 at 6pm.
-
-* Tuesday: Story 1 && Story 10 - Story 12
-* Wednesday: Story 2 - Story 9, Story 13 - Story 16
-* Thursday: Story 17 - Story 22
-* Friday: Story 23 - Story 26
-* Saturday: Story 27 - Story 31
-* Sunday: Story 32 - Story 37
-* Monday: Story 38 - Story 41
-* Tuesday: Story 42 - Story 48
-* Wednesday: Story 49 - Story 51
-* Thursday: Story 52 - 54
-
-
-## Not Everything can be FULLY Deleted
-
-In the user stories, we talk about "CRUD" functionality. However, it's rare in a real production system to ever truly delete content, and instead we typically just 'enable' or 'disable' content. Users, items and orders can be 'enabled' or 'disabled' which blocks functionality (users whose accounts are disabled should not be allowed to log in, items which are disabled cannot be ordered, orders which are disabled cannot be processed, and so on).
-
-Disabled content should also be restricted from showing up in the statistics pages. For example: if an item is disabled, it should not appear in a list of "popular items".
-
-Be careful to watch out for which stories allow full deletion of content, and restrictions on when they apply.
-
-## Deploying to Heroku
 
 ```
 [ ] done
