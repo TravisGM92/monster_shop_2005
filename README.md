@@ -9,6 +9,12 @@ BE Mod 2 Week 4/5 Group Project
 
 This is an associated heroku app. Visit the following link to see the fruits of our labor:
 [Monster Shop Project](https://immense-mesa-61866.herokuapp.com/)
+<br>
+Keep in mind this project was about backend development and minimal frontend development. One can;
+1. Register as a new user
+2. Login/logout
+3. Create items to sell through a merchant
+4. If one is an admin, they can view all orders, view all items, view all users.
 
 
 ## User Roles
