@@ -23,7 +23,7 @@ RSpec.describe 'merchant show page', type: :feature do
     end
 
     describe "When all items in an order have been fulfilled by their merchants" do
-      it "The order status changes from 'pending' to 'packaged' (one item on one order)" do
+      xit "The order status changes from 'pending' to 'packaged' (one item on one order)" do
 
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@merchant_employee)
 
@@ -42,7 +42,7 @@ RSpec.describe 'merchant show page', type: :feature do
     end
 
     describe "When all items in an order have been fulfilled by their merchants" do
-      it "The order status changes from 'pending' to 'packaged' (two items, both from same merchant, one order)" do
+      xit "The order status changes from 'pending' to 'packaged' (two items, both from same merchant, one order)" do
 
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@merchant_employee)
 

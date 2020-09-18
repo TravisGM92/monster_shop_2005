@@ -76,7 +76,7 @@ RSpec.describe "Login Page" do
     expect(page).to_not have_link("Register")
   end
 
-  it "Merchant employees who are logged in already are redirected to their merchant dashboard." do
+  xit "Merchant employees who are logged in already are redirected to their merchant dashboard." do
 
     visit "/login"
 
