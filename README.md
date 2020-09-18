@@ -8,7 +8,7 @@ BE Mod 2 Week 4/5 Group Project
 ## Using the application
 
 This is an associated heroku app. Visit the following link to see the fruits of our labor:
-([McKinstry Bro WebDev](https://immense-mesa-61866.herokuapp.com/))
+[Monster Shop Project](https://immense-mesa-61866.herokuapp.com/)
 
 
 ## User Roles
