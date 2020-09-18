@@ -5,60 +5,12 @@ BE Mod 2 Week 4/5 Group Project
 
 "Monster Shop" is a fictitious e-commerce platform where users can register to place items into a shopping cart and 'check out'. Users who work for a merchant can mark their items as 'fulfilled'; the last merchant to mark items in an order as 'fulfilled' will be able to get "shipped" by an admin. Each user role will have access to some or all CRUD functionality for application models.
 
-Students will be put into 3 or 4 person groups to complete the project.
+## Using the application
 
-## Setup
+This is an associated heroku app. Visit the following link to see the fruits of our labor:
+([McKinstry Bro WebDev](https://travisgm92.github.io/MckinstryBrosWebDev/))
+https://immense-mesa-61866.herokuapp.com/
 
-This project requires Ruby 2.5.3.
-
-* Fork this repository
-* Clone your fork
-* From the command line, install gems and set up your DB:
-    * `bundle`
-    * `rails db:create`
-    * `rails db:migrate`
-    * `rails db:seed`
-* Run the test suite with `bundle exec rspec`. There should be 99 passing tests.
-* Run your development server with `rails s`. Visit [localhost:3000/merchants](http://localhost:3000/merchants) to see the app in action.
-
-## Learning Goals
-
-### Rails
-* Create routes for namespaced routes
-* Implement partials to break a page into reusable components
-* Use Sessions to store information about a user and implement login/logout functionality
-* Use filters (e.g. `before_action`) in a Rails controller
-* Limit functionality to authorized users
-* Use BCrypt to hash user passwords before storing in the database
-
-### ActiveRecord
-* Use built-in ActiveRecord methods to join multiple tables of data, calculate statistics and build collections of data grouped by one or more attributes
-
-### Databases
-* Design and diagram a Database Schema
-* Write raw SQL queries (as a debugging tool for AR)
-
-## Requirements
-
-- must use Rails 5.1.x
-- must use PostgreSQL
-- must use 'bcrypt' for authentication
-- all controller and model code must be tested via feature tests and model tests, respectively
-- must use good GitHub branching, team code reviews via GitHub comments, and use of a project planning tool like github projects
-- must include a thorough README to describe their project
-
-## Permitted
-
-- use FactoryBot to speed up your test development
-- use "rails generators" to speed up your app development
-
-## Not Permitted
-
-- do not use JavaScript for pagination or sorting controls
-
-## Permission
-
-- if there is a specific gem you'd like to use in the project, please get permission from your instructors first
 
 ## User Roles
 
@@ -1103,14 +1055,3 @@ If the user's desired quantity is greater than the merchant's current inventory 
 Then I do not see a "fulfill" button or link
 Instead I see a big red notice next to the item indicating I cannot fulfill this item
 ```
-
-
-
-## Rubric
-
-| | **Feature Completeness** | **Rails** | **ActiveRecord** | **Testing and Debugging** | **Documentation** |
-| --- | --- | --- | --- | --- | --- |
-| **4: Exceptional**  | All User Stories 100% complete including all sad paths and edge cases, and some extension work completed | Students implement strategies not discussed in class to effectively organize code and adhere to MVC. | Highly effective and efficient use of ActiveRecord beyond what we've taught in class. Even `.each` calls will not cause additional database lookups. | Very clear Test Driven Development. Test files are extremely well organized and nested. Students utilize `before :each` blocks. 100% coverage for features and models. Close to all edge cases are accounted for.| Final project has a well written README with pictures, schema design, code snippets, contributors names linked to their github profile, heroku link, and implementation instructions. |
-| **3: Passing** | Students complete all User Stories. No more than 2 Stories fail to correctly implement sad path and edge case functionality. | Students use the principles of MVC to effectively organize code. Students can defend any of their design decisions. Students limit access to authorized users. | ActiveRecord is used in a clear and effective way to read/write data using no Ruby to process data. | 100% coverage for models. 98% coverage for features. Tests are well written and meaningful. | Students have a README with thorough implementation instructions and description of content. |
-| **2: Passing with Concerns** | Students complete all but 1 - 3 User Stories | Students utilize MVC to organize code, but cannot defend some of their design decisions. Or some functionality is not limited to the appropriately authorized users. | Ruby is used to process data that could use ActiveRecord instead. | Feature test coverage between 90% and 98%, or model test coverage below 100%, or tests are not meaningfully written or have an unclear objective. | Students have a README but it is not thorough in describing the implementation or content of the project. |
-| **1: Failing** | Students fail to complete 4 or more User Stories | Students do not effectively organize code using MVC. Or students do not authorize users. | Ruby is used to process data more often than ActiveRecord | Below 90% coverage for either features or models. | Students did not create their own README. |
