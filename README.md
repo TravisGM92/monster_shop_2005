@@ -17,13 +17,6 @@ Keep in mind this project was about backend development and minimal frontend dev
 4. If one is an admin, they can view all orders, view all items, view all users.
 
 
-## User Roles
-
-1. Visitor - this type of user is anonymously browsing our site and is not logged in
-2. Regular User - this user is registered and logged in to the application while performing their work; can place items in a cart and create an order
-3. Merchant Employee - this user works for a merchant. They can fulfill orders on behalf of their merchant. They also have the same permissions as a regular user (adding items to a cart and checking out)
-4. Admin User - a registered user who has "superuser" access to all areas of the application; user is logged in to perform their work
-
 ## All User stories
 
 
