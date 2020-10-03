@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
   get "/", to: "welcome#index"
-  resources :merchants, only: [:index, :new, :show]
-  post "/merchants", to: "merchants#create"
+  resources :merchants, only: [:index, :new, :show, :create]
+  # post "/merchants", to: "merchants#create"
   get "/merchants/:id/edit", to: "merchants#edit"
   patch "/merchants/:id", to: "merchants#update"
   delete "/merchants/:id", to: "merchants#destroy"
@@ -19,9 +19,10 @@ Rails.application.routes.draw do
   get "/items/:item_id/reviews/new", to: "reviews#new"
   post "/items/:item_id/reviews", to: "reviews#create"
 
-  get "/reviews/:id/edit", to: "reviews#edit"
-  patch "/reviews/:id", to: "reviews#update"
-  delete "/reviews/:id", to: "reviews#destroy"
+  resources :reviews, only: [:edit, :update, :destroy]
+  # get "/reviews/:id/edit", to: "reviews#edit"
+  # patch "/reviews/:id", to: "reviews#update"
+  # delete "/reviews/:id", to: "reviews#destroy"
 
   post "/cart/:item_id", to: "cart#add_item"
   get "/cart", to: "cart#show"
@@ -30,9 +31,10 @@ Rails.application.routes.draw do
   post "/cart/:item_id/add", to: "cart#add_one"
   post "/cart/:item_id/remove", to: "cart#remove_one"
 
-  get "/orders/new", to: "orders#new"
-  post "/orders", to: "orders#create"
-  get "/orders/:id", to: "orders#show"
+  resources :orders, only: [:new, :create, :show]
+  # get "/orders/new", to: "orders#new"
+  # post "/orders", to: "orders#create"
+  # get "/orders/:id", to: "orders#show"
   get '/profile/orders', to: "orders#show_orders"
 
   #Login/register
