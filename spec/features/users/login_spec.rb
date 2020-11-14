@@ -106,7 +106,7 @@ RSpec.describe "Login Page" do
     expect(current_path).to eq("/admin")
     expect(page).to have_content("You're already logged in!")
     # expect(page).to_not have_link("Log In")
-    # save_and_open_page
+
     # expect(page).to_not have_link("Register")
   end
 

@@ -9,4 +9,4 @@ class User < ApplicationRecord
   enum role: %w(default merchant admin)
 
   has_many :orders
-  end
+end
