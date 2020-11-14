@@ -21,6 +21,7 @@ RSpec.describe "Merchant Items Index Page" do
         expect(page).to have_content("Inventory: #{@tire.inventory}")
       end
 
+
       within "#item-#{@chain.id}" do
         expect(page).to have_content(@chain.name)
         expect(page).to have_content("Price: $#{@chain.price}")
